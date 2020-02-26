@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TextInput, TouchableOpacity, KeyboardAvoidingView, InteractionManager } from 'react-native';
 import { Icon } from 'react-native-elements';
 import ImagePicker from 'react-native-image-picker';
-// import ChatAudio from './chatAudio';
+import ChatAudio from './chatAudio';
 import { chatStyle } from '../themes';
 import ChatEmoji from './chatEmoji';
 import { RVW, RFT } from '../common';
@@ -315,10 +315,10 @@ export class ChatBox extends React.Component {
               style={chatStyle.iconSmall}
               onPress={this.hideVoice}
             />
-            {/* <ChatAudio
+            <ChatAudio
               sendAudio={this.sendVoiceMsg}
               toast={this.props.toast}
-            /> */}
+            />
           </View>
         }
         {this.renderExtra()}
