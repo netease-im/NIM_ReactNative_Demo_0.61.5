@@ -147,7 +147,6 @@ const ChatContent = (props) => {
                 return;
               }
               constObj.sound.play((success) => {
-                console.log(success, constObj.sound);
                 if (!success) {
                   Alert.alert('文件已损坏');
                   return;
