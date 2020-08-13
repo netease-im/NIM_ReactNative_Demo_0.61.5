@@ -306,7 +306,8 @@ util.generateTeamSysmMsg = function (data) {
 
 // todo 写成私有成员方法
 util.getNickNames = function (users) {
-  return users.map(user => (user.account === store.state.userID ? '你' : user.nick));
+  // return users.map(user => (user.account === store.state.userID ? '你' : user.nick));
+  return users.map(user => user.nick);
 };
 
 // todo 写成私有成员方法
