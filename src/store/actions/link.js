@@ -9,12 +9,17 @@ import globalStatus from '../stores/status';
 import util from '../../util';
 import { showNotification } from '../../../nim/NIM_Android_Push';
 
-const SDK = require('../../../nim/NIM_Web_SDK_rn_v7.2.0.js');
+const SDK = require('../../../nim/NIM_Web_SDK_rn_v7.8.1.js');
 const Realm = require('realm');
 const RNFS = require('react-native-fs')
 
 const iosPushConfig = {
-  tokenName: 'push_online',
+  // xcode debug 模式
+  tokenName: 'RN_APNS_PUSH_SANDBOX',
+
+  // xcode release 模式，需要先打 ipa 包，装到手机上
+  // tokenName: 'RN_APNS_PUSH_PRODUCT',
+  
 };
 const androidPushConfig = {
   xmAppId: '2882303761517806219',
@@ -121,6 +126,7 @@ class Actions {
       token,
       db: true,
       syncSessionUnread: true,
+      syncTeams: true, // 同步群
       iosPushConfig,
       androidPushConfig,
       onwillreconnect() {

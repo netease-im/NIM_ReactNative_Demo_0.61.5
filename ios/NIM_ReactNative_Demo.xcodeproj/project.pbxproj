@@ -54,6 +54,7 @@
 		1945F1641DECB1A06419E906 /* Pods-NIM_ReactNative_Demo-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIM_ReactNative_Demo-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-NIM_ReactNative_Demo-tvOSTests/Pods-NIM_ReactNative_Demo-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* NIM_ReactNative_Demo-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NIM_ReactNative_Demo-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* NIM_ReactNative_Demo-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NIM_ReactNative_Demo-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		369B196024E3C0F9002F0C1E /* NIM_ReactNative_Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = NIM_ReactNative_Demo.entitlements; path = NIM_ReactNative_Demo/NIM_ReactNative_Demo.entitlements; sourceTree = "<group>"; };
 		3C07178B06C8DD44429E7218 /* Pods-NIM_ReactNative_DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIM_ReactNative_DemoTests.release.xcconfig"; path = "Target Support Files/Pods-NIM_ReactNative_DemoTests/Pods-NIM_ReactNative_DemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		43D661E605C63A69D24A653D /* libPods-NIM_ReactNative_Demo-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NIM_ReactNative_Demo-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6679D8F1EA17C83A69A75092 /* libPods-NIM_ReactNative_Demo-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NIM_ReactNative_Demo-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +126,7 @@
 		13B07FAE1A68108700A75B9A /* NIM_ReactNative_Demo */ = {
 			isa = PBXGroup;
 			children = (
+				369B196024E3C0F9002F0C1E /* NIM_ReactNative_Demo.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -679,21 +681,23 @@
 			baseConfigurationReference = E6C33C28D8BAA431DA70F9A4 /* Pods-NIM_ReactNative_Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_ENTITLEMENTS = NIM_ReactNative_Demo/NIM_ReactNative_Demo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 569GNZ5392;
 				INFOPLIST_FILE = NIM_ReactNative_Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.NIM-ReactNative-Demo";
 				PRODUCT_NAME = NIM_ReactNative_Demo;
-				PROVISIONING_PROFILE_SPECIFIER = NIMReactNativeDemo_Distribution;
+				PROVISIONING_PROFILE_SPECIFIER = NIMReactNativeDemo;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -703,18 +707,20 @@
 			baseConfigurationReference = DB5979980B512B20BC8E1166 /* Pods-NIM_ReactNative_Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = NIM_ReactNative_Demo/NIM_ReactNative_Demo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 569GNZ5392;
 				INFOPLIST_FILE = NIM_ReactNative_Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.NIM-ReactNative-Demo";
 				PRODUCT_NAME = NIM_ReactNative_Demo;
 				PROVISIONING_PROFILE_SPECIFIER = NIMReactNativeDemo_Distribution;
 				VERSIONING_SYSTEM = "apple-generic";
