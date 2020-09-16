@@ -14,7 +14,7 @@ $ cd ../
 $ react-native run-ios
 ```
 
-pod 安装和 react-native 启动时遇到很多问题，我记载了下来，[RN 0.57.8 与 0.60.5 的环境安装问题记录](https://www.cnblogs.com/everlose/p/13359557.html)
+pod 安装和 react-native 启动时遇到很多问题，记载了下来，[RN 0.57.8 与 0.60.5 的环境安装问题记录](https://www.cnblogs.com/everlose/p/13359557.html)
 
 有以下几个问题
 
@@ -87,59 +87,3 @@ $ xcrun simctl list devices
 ```
 react-native run-ios --simulator "iPhone 7 Plus"
 ```
-
-## 调试推送 token 
-
-想要调试推送的 token 的话，需要用 xcode 在真机上运行，注意有些权限、证书配置比较苦恼，附上我当时调试的心得
-
-http://jira.netease.com/browse/MMC2-12382
-
-## 连 IPhone 真机开发
-
-开发的 profiles 下载 NIMReactNativeDemo 的 profile，证书可以用自己的 apple 开发者账号，如果是新人，联系 IOS 开发张根宁/徐冬，需要把自己apple 开发账号添加进入群组，才能编译使用。
-
-![](https://yx-web-nosdn.netease.im/quickhtml%2Fassets%2Fyunxin%2Fnim_reactnative_demo%2FZIE%20Web%20Demo.png)
-
-上面说的方法只是 debug 模式的，如果你要做一个 release 版本，那需要 NiMReactNativeDemo_Distribution 的 profile，其证书向徐冬要。
-
-## 连 IPhone 真机测试推送
-
-推送需要用 APN 证书，证书一般一年就会过期，过期后还得再找 IOS 帮忙申请新的证书
-
-![]( https://yx-web-nosdn.netease.im/quickhtml%2Fassets%2Fyunxin%2Fnim_reactnative_demo%2Fasdoijkzmoiashdfadsafzqw.png)
-
-本地测试推送时使用 Easy APNS Provider 工具，它需要得知 device Token，以及 cer 证书，联系陈通塔or马莹莹or张根宁去得到 p12 文件和 cer 文件。如下图，测试包使用测试的 cer 连接 gateway.sandbox.push.apple.com ，填写好 token 后就可以发送
-
-![](https://yx-web-nosdn.netease.im/quickhtml%2Fassets%2Fyunxin%2Fnim_reactnative_demo%2Fzmczaoiqjzcuhzadgf.png)
-
-效果如下
-
-![]( https://yx-web-nosdn.netease.im/quickhtml%2Fassets%2Fyunxin%2Fnim_reactnative_demo%2Fuwskfjziuawkofijsu.jpg)
-
-想测试一个完整的推送流程，则需要给服务端李兴上文的 p12 格式证书，并告知他pushname，appid等信息，其格式如下
-
-```
-release 模式
-appid：org.reactjs.native.example.NIM-ReactNative-Demo
-pushname：RN_APNS_PUSH_PRODUCT
-password: 111111
-cert: 见线上的 p12 文件
-type：1
-
-debug 模式
-appid：org.reactjs.native.example.NIM-ReactNative-Demo
-pushname：RN_APNS_PUSH_SANDBOX
-password: 111111
-cert: 见开发的 p12 文件
-type：0
-```
-
-在 xcode 上按三角号启用 debug 模式，并注意 demo 工程下的 iosPushConfig 对象里的 tokenName 是上文的debug 模式里的 RN_APNS_PUSH_SANDBOX。接着就可以去测试 debug 版本的推送情况
-
-如果想测 release 版本的，先要打包成release，先打包成 archive，再从 archive 打包成 ipa 文件，接着从 window -> devices and simulators 看到具体设备，把ipa拖进去就可以安装。
-
-![](https://yx-web-nosdn.netease.im/quickhtml%2Fassets%2Fyunxin%2Fnim_reactnative_demo%2Fszdgdsaoiqiofdua.png)
-
-在手机上安装完成文件后就可以测试 release 版本的推送情况了
-
-

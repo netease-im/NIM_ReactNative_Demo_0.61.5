@@ -120,7 +120,7 @@ class Actions {
   initNIM = (account, token, callback) => {
     const self = this;
     constObj.nim = SDK.NIM.getInstance({
-      // debug: true,
+      debug: true,
       appKey: configs.appkey,
       account,
       token,
@@ -244,6 +244,10 @@ class Actions {
       onsysmsg: onSysMsgs,
       onofflinesysmsgs: onSysMsgs,
       onupdatesysmsg: onSysMsgs, // 通过、拒绝好友申请会收到此回调
+      onSignalingNotify: function(data) {
+        console.log('收到通知包 :: onSignalingMutilClientSyncNotify');
+        console.log(data);
+      }
     });
   }
 
