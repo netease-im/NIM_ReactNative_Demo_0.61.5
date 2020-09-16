@@ -377,7 +377,7 @@ class Actions {
     const { reset, end, done } = options;
     constObj.nim.getLocalMsgs({
       sessionId,
-      limit: 10,
+      limit: 20,
       end,
       desc: true,
       done: (err, obj) => {
@@ -403,6 +403,7 @@ class Actions {
               });
             }
             nimStore.currentSessionMsgs = tempMsgs;
+            // console.log('the getLocalMsgs', tempMsgs.map(item => ({text: item.text, type: item.type, time: `${new Date(item.time)}` }) ));
           }
         }
         if (done instanceof Function) {

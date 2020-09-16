@@ -6,9 +6,11 @@ const Stack = createStackNavigator();
 
 const App = (
   <Stack.Navigator initialRouteName="session" headerMode="none" mode="card">
+    <Stack.Screen name="session" component={Pages.session} />
+    
     <Stack.Screen name="login" component={Pages.login} />
     <Stack.Screen name="register" component={Pages.register} />
-    <Stack.Screen name="session" component={Pages.session} />
+    
     <Stack.Screen name="contact" component={Pages.contact} />
     <Stack.Screen name="general" component={Pages.general} />
     <Stack.Screen name="chat" component={Pages.chat} />

@@ -17,7 +17,7 @@ import res from '../res';
 const AvatarItem = (props) => {
   let { avatar } = props;
   if (!avatar) {
-    avatar = configs.defaultUserIcon;
+    avatar = props.scene === 'p2p' ? configs.defaultUserIcon : configs.defaultGroupIcon;
   }
   return (
     <View style={{
@@ -183,9 +183,9 @@ const getThumbnail = (props) => {
     userInfo = props.nimStore.userInfos[account];
   }
   let avatar = configs.defaultUserIcon;
-  if (userInfo.avatar) {
+  if (userInfo && userInfo.avatar) {
     avatar = constObj.nim.viewImageSync({
-      url: userInfo.avatar, // 必填
+      url: userInfo && userInfo.avatar, // 必填
       quality: 80, // 图片质量 0 - 100 可选填
       thumbnail: { // 生成缩略图， 可选填
         width: 5 * RVW,

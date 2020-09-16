@@ -40,6 +40,7 @@ export default class Page extends Component {
   }
   initLogin() {
     if (constObj.nim) {
+      clearTimeout(this.promiseTimer);
       return;
     }
     AsyncStorage.getItem('isLogin').then((isLogin) => {
@@ -73,7 +74,7 @@ export default class Page extends Component {
   // 可以理解为一个compute方法-。-
   genSession() {
     const {
-      sessionlist, userInfos, userID,
+      sessionlist, userInfos, userID, teamlist
     } = this.props.nimStore;
     const list = [];
 
@@ -97,6 +98,18 @@ export default class Page extends Component {
             this.forceUpdate();
           });
         }
+      } else if (item.scene === 'team') {
+        let teamInfo = null
+        teamInfo = teamlist.find(team => {
+          return team.teamId === item.to
+        })
+        if (teamInfo) {
+          item.name = teamInfo.name
+          item.avatar = util.genAvatar(teamInfo.avatar || configs.defaultGroupIcon)
+        } else {
+          item.name = `群${item.to}`
+          item.avatar = util.genAvatar(item.avatar || configs.defaultGroupIcon)
+        }
       } else {
         continue;
       }
@@ -105,8 +118,8 @@ export default class Page extends Component {
         item.lastMsgShow = lastMsg.text || '';
       } else if (lastMsg.type === 'custom') {
         item.lastMsgShow = util.parseCustomMsg(lastMsg);
-        // } else if (lastMsg.scene === 'team' && lastMsg.type === 'notification') {
-        //   item.lastMsgShow = util.generateTeamSysmMsg(lastMsg);
+      } else if (lastMsg.scene === 'team' && lastMsg.type === 'notification') {
+        item.lastMsgShow = util.generateTeamSysmMsg(lastMsg);
       } else if (util.mapMsgType(lastMsg)) {
         item.lastMsgShow = `[${util.mapMsgType(lastMsg)}]`;
       } else {
@@ -128,6 +141,7 @@ export default class Page extends Component {
   render() {
     const sessionlist = this.genSession();
     const { navigation, route } = this.props;
+
     return (
       // 适配iphoneX用safeView
       <View style={globalStyle.container}>

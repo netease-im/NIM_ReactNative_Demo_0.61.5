@@ -135,6 +135,11 @@ export default class Page extends Component {
     const msg = item.item;
     if (msg.type === 'tip') {
       return <Text style={chatStyle.tip}>{msg.tip}</Text>;
+    } else if (msg.type === 'timeTag') {
+      return <Text style={chatStyle.timetag}>----  {msg.text}  ----</Text>;
+    } else if (msg.type === 'notification' && msg.scene === 'team') {
+      let showText = util.generateTeamSysmMsg(msg);
+      return <Text style={chatStyle.timetag}>{showText}</Text>;
     } else if (msg.flow === 'in') {
       return (<ChatLeft
         msg={msg}
@@ -148,8 +153,6 @@ export default class Page extends Component {
         nimStore={this.props.nimStore}
         resendTextMag={this.resendTextMag}
       />);
-    } else if (msg.type === 'timeTag') {
-      return <Text style={chatStyle.timetag}>----  {msg.text}  ----</Text>;
     }
     return null;
   })
@@ -167,7 +170,8 @@ export default class Page extends Component {
           outerContainerStyles={headerStyle.wrapper}
           centerComponent={{ text: this.sessionName(), style: headerStyle.center }}
           leftComponent={
-            <GoBack navigation={navigation} callback={this.props.sessionAction.resetCurrSession} />}
+            <GoBack navigation={navigation} callback={this.props.sessionAction.resetCurrSession} />
+          }
           rightComponent={<Icon
             type="evilicon"
             name="clock"
