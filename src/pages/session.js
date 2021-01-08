@@ -79,7 +79,7 @@ export default class Page extends Component {
     const list = [];
 
     for (let i = 0; i < sessionlist.length; i += 1) {
-      const item = { ...sessionlist[i] };
+      const item = JSON.parse(JSON.stringify(sessionlist[i]))
       item.name = '';
       item.avatar = '';
       // 没有最新会话的不展示
