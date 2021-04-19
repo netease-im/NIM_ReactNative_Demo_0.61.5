@@ -185,17 +185,17 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
   - React-jsinspector (0.61.5)
-  - react-native-image-picker (2.3.3):
-    - React
-  - react-native-netinfo (5.9.5):
-    - React
+  - react-native-image-picker (2.3.4):
+    - React-Core
+  - react-native-netinfo (5.9.10):
+    - React-Core
   - react-native-safe-area-context (0.7.3):
     - React
-  - react-native-video (5.0.2):
-    - React
-    - react-native-video/Video (= 5.0.2)
-  - react-native-video/Video (5.0.2):
-    - React
+  - react-native-video (5.1.1):
+    - React-Core
+    - react-native-video/Video (= 5.1.1)
+  - react-native-video/Video (5.1.1):
+    - React-Core
   - React-RCTActionSheet (0.61.5):
     - React-Core/RCTActionSheetHeaders (= 0.61.5)
   - React-RCTAnimation (0.61.5):
@@ -238,27 +238,26 @@ PODS:
     - React
   - RNCMaskedView (0.1.10):
     - React
-  - RNCPushNotificationIOS (1.4.0):
-    - React
+  - RNCPushNotificationIOS (1.8.0):
+    - React-Core
   - RNFS (2.16.6):
     - React
-  - RNGestureHandler (1.6.1):
-    - React
-  - RNReanimated (1.9.0):
-    - React
-  - RNScreens (2.9.0):
-    - React
+  - RNGestureHandler (1.9.0):
+    - React-Core
+  - RNReanimated (1.13.2):
+    - React-Core
+  - RNScreens (2.17.0):
+    - React-Core
   - RNSound (0.11.0):
     - React
     - RNSound/Core (= 0.11.0)
   - RNSound/Core (0.11.0):
     - React
-  - RNVectorIcons (6.7.0):
+  - RNVectorIcons (6.6.0):
     - React
   - Yoga (1.14.0)
 
 DEPENDENCIES:
-  - boost-for-react-native (from `https://gitee.com/damon-s/boost-for-react-native.git`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
@@ -303,12 +302,11 @@ DEPENDENCIES:
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  "git@gitee.com:mirrors/CocoaPods-Specs.git":
+  trunk:
+    - boost-for-react-native
     - GCDWebServer
 
 EXTERNAL SOURCES:
-  boost-for-react-native:
-    :git: https://gitee.com/damon-s/boost-for-react-native.git
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   FBLazyVector:
@@ -388,11 +386,6 @@ EXTERNAL SOURCES:
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
-CHECKOUT OPTIONS:
-  boost-for-react-native:
-    :commit: 6bbccdd8146ffb75e1ae5e92472f7affb3375c1c
-    :git: https://gitee.com/damon-s/boost-for-react-native.git
-
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
@@ -410,10 +403,10 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
-  react-native-image-picker: a6c3d644751a388b0fc8b56822ff7cbd398a3008
-  react-native-netinfo: 7f3f3ed9e8f0e7ab3e7cac00cbfdc6997e25ecaf
+  react-native-image-picker: 32d1ad2c0024ca36161ae0d5c2117e2d6c441f11
+  react-native-netinfo: 52cf0ee8342548a485e28f4b09e56b477567244d
   react-native-safe-area-context: 8260e5157617df4b72865f44006797f895b2ada7
-  react-native-video: 961749da457e73bf0b5565edfbaffc25abfb8974
+  react-native-video: 1574074179ecaf6a9dd067116c8f31bf9fec15c8
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72
@@ -427,15 +420,15 @@ SPEC CHECKSUMS:
   RealmJS: 6d20849a7beffa2dc425ee325f24f0366ee774b6
   RNAudio: cae2991f2dccb75163f260b60da8051717b959fa
   RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
-  RNCPushNotificationIOS: f4a1a20fe1d70bbb1fab6abf86ffec2996012b12
+  RNCPushNotificationIOS: 5b1cf9ad2aaa107ecb92d5d2d7005ba521b2b97a
   RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
-  RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
-  RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
-  RNScreens: c526239bbe0e957b988dacc8d75ac94ec9cb19da
+  RNGestureHandler: 9b7e605a741412e20e13c512738a31bd1611759b
+  RNReanimated: e03f7425cb7a38dcf1b644d680d1bfc91c3337ad
+  RNScreens: 23c1fbf7797261321f6db93fdcbd9913573535e4
   RNSound: c980916b596cc15c8dcd2f6ecd3b13c4881dbe20
-  RNVectorIcons: 368d6d8b8301224e5ffb6254191f4f8876c2be0d
+  RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: 17f2ee942614263c0f899597185f0543dc505d44
+PODFILE CHECKSUM: e2f021c3916fb51bf80ddf82c0803ea256843f28
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0

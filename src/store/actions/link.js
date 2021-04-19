@@ -9,7 +9,7 @@ import globalStatus from '../stores/status';
 import util from '../../util';
 import { showNotification } from '../../../nim/NIM_Android_Push';
 
-const SDK = require('../../../nim/NIM_Web_SDK_rn_v7.8.1.js');
+const SDK = require('../../../nim/NIM_Web_SDK_rn_v8.3.0.js');
 const Realm = require('realm');
 const RNFS = require('react-native-fs')
 
