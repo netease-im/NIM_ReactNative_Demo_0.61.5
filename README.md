@@ -1,3 +1,5 @@
+需要 node 10
+
 ## 启动
 
 前置该装 cocoapods，react-native-cli，自行搜索。

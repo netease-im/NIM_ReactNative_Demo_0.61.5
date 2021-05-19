@@ -120,7 +120,7 @@ class Actions {
   initNIM = (account, token, callback) => {
     const self = this;
     constObj.nim = SDK.NIM.getInstance({
-      debug: true,
+      debug: false,
       appKey: configs.appkey,
       account,
       token,
@@ -155,6 +155,21 @@ class Actions {
       },
       onsyncdone() {
         Alert.alert('提示', '账号及离线消息同步完成');
+        // constObj.nim.getLocalSessions({
+        //   done(err, msgs) {
+        //     console.log('!!!!!!!!!', err, msgs.sessions.map(item => ({ 
+        //       id: item.id,
+        //       updateTime: item.updateTime
+        //     })));
+        //   }
+        // })
+        // constObj.nim.db.putSession({
+        //   id: 'p2p-guojiajun',
+        //   ack: 0,
+        //   done(err, msgs) {
+        //     console.log('~~~~~~', '插入完成')
+        //   }
+        // })
       },
       onmyinfo(info) {
         set(nimStore, 'myInfo', Object.assign(nimStore.myInfo, info));
