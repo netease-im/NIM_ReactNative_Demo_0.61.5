@@ -1,14 +1,20 @@
 import React from 'react';
-import { View, TextInput, TouchableOpacity, KeyboardAvoidingView, InteractionManager } from 'react-native';
-import { Icon } from 'react-native-elements';
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  InteractionManager,
+} from 'react-native';
+import {Icon} from 'react-native-elements';
 import ImagePicker from 'react-native-image-picker';
 import ChatAudio from './chatAudio';
-import { chatStyle } from '../themes';
+import {chatStyle} from '../themes';
 import ChatEmoji from './chatEmoji';
-import { RVW, RFT } from '../common';
+import {RVW, RFT} from '../common';
 import uuid from '../util/uuid';
 
-export const ChatItem = (props) => {
+export const ChatItem = props => {
   const typeMap = {
     location: 'location-on',
     camera: 'camera-alt',
@@ -18,7 +24,12 @@ export const ChatItem = (props) => {
   };
   return (
     <TouchableOpacity style={chatStyle.chatItem} onPress={props.onPress}>
-      <Icon type="material" name={typeMap[props.itemType]} size={6 * RVW} iconStyle={{ color: '#666' }} />
+      <Icon
+        type="material"
+        name={typeMap[props.itemType]}
+        size={6 * RVW}
+        iconStyle={{color: '#666'}}
+      />
     </TouchableOpacity>
   );
 };
@@ -30,7 +41,7 @@ export class ChatBox extends React.Component {
       toAccount: '',
     },
     chatListRef: null,
-  }
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -50,13 +61,12 @@ export class ChatBox extends React.Component {
       isExtraShown: false,
       isEmojiShown: false,
     });
-  }
+  };
   hideVoice = () => {
     this.setState({
       isTextMsg: true,
-
     });
-  }
+  };
   showEmoji = (isEmoji = false) => {
     this.inputText.blur();
     this.setState({
@@ -65,7 +75,7 @@ export class ChatBox extends React.Component {
       msgText: this.inputText._lastNativeText,
     });
     this.scrollToEnd();
-  }
+  };
   showExtra = () => {
     this.inputText.blur();
     this.setState({
@@ -73,9 +83,9 @@ export class ChatBox extends React.Component {
       isEmojiShown: false,
     });
     this.scrollToEnd();
-  }
-  sendTextMsg = (event) => {
-    const { text } = event.nativeEvent;
+  };
+  sendTextMsg = event => {
+    const {text} = event.nativeEvent;
     if (text === '') {
       return;
     }
@@ -90,16 +100,16 @@ export class ChatBox extends React.Component {
     this.props.action.sendTextMsg(options);
     // 触发value diff
     InteractionManager.runAfterInteractions(() => {
-    // clearTimeout(this._scrollTimer);
+      // clearTimeout(this._scrollTimer);
       this.inputText._lastNativeText = '';
       this.setState({
         msgText: '',
       });
       this.scrollToEnd();
-    // }, 300);
+      // }, 300);
     });
-  }
-  sendEmojiMsg = (item) => {
+  };
+  sendEmojiMsg = item => {
     const options = {
       content: {
         type: 3,
@@ -110,7 +120,7 @@ export class ChatBox extends React.Component {
     };
     this.props.action.sendCustomMsg(options);
     this.scrollToEnd();
-  }
+  };
   sendPlayMsg = () => {
     this.showExtra();
     const options = {
@@ -125,7 +135,7 @@ export class ChatBox extends React.Component {
     };
     this.props.action.sendCustomMsg(options);
     this.scrollToEnd();
-  }
+  };
   sendVoiceMsg = (filePath, duration) => {
     const fileOptions = {
       scene: this.props.options.scene,
@@ -139,7 +149,7 @@ export class ChatBox extends React.Component {
       },
     };
     this.props.action.sendAudioMsg(fileOptions);
-  }
+  };
   sendImgMsg = () => {
     this.showExtra();
     const photoOptions = {
@@ -155,7 +165,7 @@ export class ChatBox extends React.Component {
         path: 'images',
       },
     };
-    ImagePicker.showImagePicker(photoOptions, (response) => {
+    ImagePicker.showImagePicker(photoOptions, response => {
       // console.log('Response = ', response);
       if (response.didCancel) {
         console.log('User cancelled image picker');
@@ -187,15 +197,15 @@ export class ChatBox extends React.Component {
         // });
       }
     });
-  }
+  };
   sendGeoMsg = () => {
     this.showExtra();
     this.props.toast.show('Demo暂不支持发送地理位置消息');
-  }
+  };
   sendFileMsg = () => {
     this.showExtra();
     this.props.toast.show('Demo暂不支持发送文件消息');
-  }
+  };
   scrollToEnd = () => {
     if (this.props.chatListRef) {
       clearTimeout(this._scrollTimer);
@@ -205,32 +215,35 @@ export class ChatBox extends React.Component {
         });
       }, 500);
     }
-  }
+  };
   renderEmoji = () => {
     if (this.state.isEmojiShown) {
       return (
-        <ChatEmoji onSelectEmoji={(item) => {
-          if (item.type === 'emoji') {
-            this.inputText._lastNativeText = `${this.inputText._lastNativeText}${item.key}`;
-            // console.log(this.inputText._lastNativeText);
-            // this.setState({
-            //   msgText: `${this.state.msgText}${item.key}`,
-            // });
-            this.showEmoji(true);
-          } else if (item.type === 'pinup') {
-            this.sendEmojiMsg({
-              catalog: item.name,
-              chartlet: item.key,
-            });
-            this.inputText.blur();
-            this.showEmoji();
-          }
-        }}
+        <ChatEmoji
+          onSelectEmoji={item => {
+            if (item.type === 'emoji') {
+              this.inputText._lastNativeText = `${
+                this.inputText._lastNativeText
+              }${item.key}`;
+              // console.log(this.inputText._lastNativeText);
+              // this.setState({
+              //   msgText: `${this.state.msgText}${item.key}`,
+              // });
+              this.showEmoji(true);
+            } else if (item.type === 'pinup') {
+              this.sendEmojiMsg({
+                catalog: item.name,
+                chartlet: item.key,
+              });
+              this.inputText.blur();
+              this.showEmoji();
+            }
+          }}
         />
       );
     }
     return <View />;
-  }
+  };
   renderExtra = () => {
     if (this.state.isExtraShown) {
       return (
@@ -245,14 +258,14 @@ export class ChatBox extends React.Component {
         </View>
       );
     }
-    return (<View />);
-  }
+    return <View />;
+  };
   renderBox = () => {
     const icm = 8 * RFT;
     const icColor = '#999';
     return (
       <View style={chatStyle.chatBoxWrapper}>
-        {this.state.isTextMsg ?
+        {this.state.isTextMsg ? (
           <View style={[chatStyle.chatBox, chatStyle.center]}>
             <Icon
               key={0}
@@ -270,12 +283,14 @@ export class ChatBox extends React.Component {
               value={this.state.msgText}
               onSubmitEditing={this.sendTextMsg}
               underlineColorAndroid="transparent"
-              ref={(ref) => { this.inputText = ref; }}
-              onChangeText={(text) => {
+              ref={ref => {
+                this.inputText = ref;
+              }}
+              onChangeText={text => {
                 // if (global.ISANDROID) {
-                  this.setState({
-                    msgText: text,
-                  });
+                this.setState({
+                  msgText: text,
+                });
                 // }
               }}
               onFocus={() => {
@@ -304,7 +319,8 @@ export class ChatBox extends React.Component {
               style={chatStyle.iconSmall}
               onPress={this.showExtra}
             />
-          </View> :
+          </View>
+        ) : (
           <View style={[chatStyle.chatBox, chatStyle.center]}>
             <Icon
               key={0}
@@ -315,17 +331,14 @@ export class ChatBox extends React.Component {
               style={chatStyle.iconSmall}
               onPress={this.hideVoice}
             />
-            <ChatAudio
-              sendAudio={this.sendVoiceMsg}
-              toast={this.props.toast}
-            />
+            <ChatAudio sendAudio={this.sendVoiceMsg} toast={this.props.toast} />
           </View>
-        }
+        )}
         {this.renderExtra()}
         {this.renderEmoji()}
       </View>
     );
-  }
+  };
   render() {
     if (global.ISIOS) {
       return (

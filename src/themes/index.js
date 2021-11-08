@@ -1,4 +1,4 @@
-import { RVW, RFT, RPX } from '../common';
+import {RVW, RFT, RPX} from '../common';
 
 export const baseBlueColor = '#0091e4';
 export const lightBlueColor = '#a5d8ff';
@@ -15,8 +15,8 @@ export const globalStyle = {
     alignContent: 'center',
   },
   avatarWrapper: {
-    width: (9 * RVW) + 1,
-    height: (9 * RVW) + 1,
+    width: 9 * RVW + 1,
+    height: 9 * RVW + 1,
     borderRadius: (9 * RVW) / 2,
     borderWidth: 1,
     borderColor: '#ccc',
@@ -284,6 +284,4 @@ export const emojiStyle = {
     borderColor: '#ccc',
     borderLeftWidth: 0,
   },
-
 };
-

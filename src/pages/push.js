@@ -1,6 +1,6 @@
 import React from 'react';
 import PushNotification from 'react-native-push-notification';
-import { View, Text, StyleSheet, Picker, AppState } from 'react-native';
+import {View, Text, StyleSheet, Picker, AppState} from 'react-native';
 import PushController from './PushController';
 
 const styles = StyleSheet.create({
@@ -40,7 +40,7 @@ export default class Push extends React.Component {
 
   handleAppStateChange(appState) {
     if (appState === 'background') {
-      const date = new Date(Date.now() + (this.state.seconds * 1000));
+      const date = new Date(Date.now() + this.state.seconds * 1000);
 
       PushNotification.localNotificationSchedule({
         message: 'My Notification Message',
@@ -58,8 +58,7 @@ export default class Push extends React.Component {
         <Picker
           style={styles.picker}
           selectedValue={this.state.seconds}
-          onValueChange={seconds => this.setState({ seconds })}
-        >
+          onValueChange={seconds => this.setState({seconds})}>
           <Picker.Item label="5" value={5} />
           <Picker.Item label="10" value={10} />
           <Picker.Item label="15" value={15} />

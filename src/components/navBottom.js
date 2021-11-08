@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { baseBlueColor } from '../themes';
-import { RVW, RFT } from '../common';
+import {View, Text, TouchableOpacity} from 'react-native';
+import {baseBlueColor} from '../themes';
+import {RVW, RFT} from '../common';
 
 const localStyle = {
   wrapper: {
@@ -23,22 +23,60 @@ const localStyle = {
   },
 };
 
-export default (props) => {
-  const { navigation, route } = props;
+export default props => {
+  const {navigation, route} = props;
   const routeName = route.name;
   const lightBlueColor = '#f0f3fb';
   return (
     <View style={localStyle.wrapper}>
-      <TouchableOpacity style={[localStyle.tab, { backgroundColor: routeName === 'session' ? '#fff' : lightBlueColor }]} onPress={() => { navigation.navigate('session'); }}>
-        <Text style={[localStyle.label, { color: routeName === 'session' ? baseBlueColor : '#333' }]}>最近会话</Text>
+      <TouchableOpacity
+        style={[
+          localStyle.tab,
+          {backgroundColor: routeName === 'session' ? '#fff' : lightBlueColor},
+        ]}
+        onPress={() => {
+          navigation.navigate('session');
+        }}>
+        <Text
+          style={[
+            localStyle.label,
+            {color: routeName === 'session' ? baseBlueColor : '#333'},
+          ]}>
+          最近会话
+        </Text>
       </TouchableOpacity>
-      <TouchableOpacity style={[localStyle.tab, { backgroundColor: routeName === 'contact' ? '#fff' : lightBlueColor }]} onPress={() => { navigation.navigate('contact'); }}>
-        <Text style={[localStyle.label, { color: routeName === 'contact' ? baseBlueColor : '#333' }]}>通讯录</Text>
+      <TouchableOpacity
+        style={[
+          localStyle.tab,
+          {backgroundColor: routeName === 'contact' ? '#fff' : lightBlueColor},
+        ]}
+        onPress={() => {
+          navigation.navigate('contact');
+        }}>
+        <Text
+          style={[
+            localStyle.label,
+            {color: routeName === 'contact' ? baseBlueColor : '#333'},
+          ]}>
+          通讯录
+        </Text>
       </TouchableOpacity>
-      <TouchableOpacity style={[localStyle.tab, { backgroundColor: routeName === 'general' ? '#fff' : lightBlueColor }]} onPress={() => { navigation.navigate('general'); }}>
-        <Text style={[localStyle.label, { color: routeName === 'general' ? baseBlueColor : '#333' }]}>设置</Text>
+      <TouchableOpacity
+        style={[
+          localStyle.tab,
+          {backgroundColor: routeName === 'general' ? '#fff' : lightBlueColor},
+        ]}
+        onPress={() => {
+          navigation.navigate('general');
+        }}>
+        <Text
+          style={[
+            localStyle.label,
+            {color: routeName === 'general' ? baseBlueColor : '#333'},
+          ]}>
+          设置
+        </Text>
       </TouchableOpacity>
     </View>
   );
 };
-

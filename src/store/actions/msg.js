@@ -1,17 +1,15 @@
-import { observable, action, set } from 'mobx';
-import { Alert } from 'react-native';
+import {observable, action, set} from 'mobx';
+import {Alert} from 'react-native';
 import constObj from '../constant';
 import nimStore from '../stores/nim';
 import util from '../../util';
 import uuid from '../../util/uuid';
 
 class Actions {
-  @observable nimStore
+  @observable nimStore;
 
   generateFakeMsg = (options = {}) => {
-    const {
-      scene, to, type, pendingUrl,
-    } = options;
+    const {scene, to, type, pendingUrl} = options;
     const msg = {
       sessionId: `${scene}-${to}`,
       scene,
@@ -26,15 +24,14 @@ class Actions {
       },
       idClientFake: uuid(),
       status: 'sending',
-      time: (new Date()).getTime(),
+      time: new Date().getTime(),
     };
     return msg;
-  }
-
+  };
 
   @action
-  appendSessionMsg = (msg) => {
-    const { sessionId } = msg;
+  appendSessionMsg = msg => {
+    const {sessionId} = msg;
     const tempMsgs = [];
     // if (nimStore.msgsMap[sessionId]) {
     //   nimStore.msgsMap[sessionId].push(msg);
@@ -43,7 +40,7 @@ class Actions {
       const msgLen = nimStore.currentSessionMsgs.length;
       if (msgLen > 0) {
         const lastMsgTime = nimStore.currentSessionMsgs[msgLen - 1].time;
-        if ((msg.time - lastMsgTime) > 1000 * 60 * 5) {
+        if (msg.time - lastMsgTime > 1000 * 60 * 5) {
           tempMsgs.push({
             type: 'timeTag',
             text: util.formatDate(msg.time, false),
@@ -58,15 +55,15 @@ class Actions {
         });
       }
       tempMsgs.push(msg);
-      nimStore.currentSessionMsgs = nimStore.currentSessionMsgs.concat(tempMsgs);
+      nimStore.currentSessionMsgs = nimStore.currentSessionMsgs.concat(
+        tempMsgs,
+      );
     }
-  }
+  };
 
   // 替换消息列表消息，如消息撤回
-  @action replaceSessionMsg = (obj) => {
-    const {
-      sessionId, idClient, idClientFake, msg,
-    } = obj;
+  @action replaceSessionMsg = obj => {
+    const {sessionId, idClient, idClientFake, msg} = obj;
     if (sessionId === nimStore.currentSessionId) {
       const tempMsgs = nimStore.currentSessionMsgs || [];
       if (tempMsgs.length > 0) {
@@ -84,11 +81,11 @@ class Actions {
         nimStore.currentSessionMsgs = util.simpleClone(tempMsgs);
       }
     }
-  }
+  };
 
   @action
-  updateSessionMsg = (msg) => {
-    const { sessionId, idClient, idClientFake } = msg;
+  updateSessionMsg = msg => {
+    const {sessionId, idClient, idClientFake} = msg;
     if (sessionId === nimStore.currentSessionId) {
       const msgLen = nimStore.currentSessionMsgs.length;
       if (msgLen > 0) {
@@ -96,23 +93,27 @@ class Actions {
           if (idClientFake) {
             if (nimStore.currentSessionMsgs[i].idClientFake === idClientFake) {
               set(nimStore.currentSessionMsgs[i], msg);
-              nimStore.currentSessionMsgs = nimStore.currentSessionMsgs.concat([]);
+              nimStore.currentSessionMsgs = nimStore.currentSessionMsgs.concat(
+                [],
+              );
               break;
             }
           } else if (idClient) {
             if (nimStore.currentSessionMsgs[i].idClient === idClient) {
               set(nimStore.currentSessionMsgs[i], msg);
-              nimStore.currentSessionMsgs = nimStore.currentSessionMsgs.concat([]);
+              nimStore.currentSessionMsgs = nimStore.currentSessionMsgs.concat(
+                [],
+              );
               break;
             }
           }
         }
       }
     }
-  }
+  };
 
   @action
-  resendTextMsg = (options) => {
+  resendTextMsg = options => {
     console.log('准备重发消息：', options);
     if (constObj.nim) {
       constObj.nim.resendMsg({
@@ -120,9 +121,7 @@ class Actions {
         done: (error, newMsg, data) => {
           console.log('重发消息回调：', error, newMsg, data);
           if (error) {
-            Alert.alert('提示', error.message, [
-              { text: '确认' },
-            ]);
+            Alert.alert('提示', error.message, [{text: '确认'}]);
             newMsg.status = 'fail';
           }
           this.replaceSessionMsg({
@@ -136,20 +135,16 @@ class Actions {
   };
 
   @action
-  sendTextMsg = (options) => {
+  sendTextMsg = options => {
     if (constObj.nim) {
-      const {
-        scene, to, text,
-      } = options;
+      const {scene, to, text} = options;
       const msg = constObj.nim.sendText({
         scene,
         to,
         text,
         done: (error, newMsg) => {
           if (error) {
-            Alert.alert('提示', error.message, [
-              { text: '确认' },
-            ]);
+            Alert.alert('提示', error.message, [{text: '确认'}]);
             newMsg.status = 'fail';
           }
           this.replaceSessionMsg({
@@ -164,18 +159,16 @@ class Actions {
   };
 
   @action
-  sendCustomMsg = (options) => {
+  sendCustomMsg = options => {
     if (constObj.nim) {
-      const { scene, to, content } = options;
+      const {scene, to, content} = options;
       const msg = constObj.nim.sendCustomMsg({
         scene,
         to,
         content: JSON.stringify(content),
         done: (error, newMsg) => {
           if (error) {
-            Alert.alert('提示', error.message, [
-              { text: '确认' },
-            ]);
+            Alert.alert('提示', error.message, [{text: '确认'}]);
             newMsg.status = 'fail';
           }
           this.replaceSessionMsg({
@@ -190,7 +183,7 @@ class Actions {
   };
 
   @action
-  sendImageMsg = (options) => {
+  sendImageMsg = options => {
     if (constObj.nim) {
       // 本地的图片先显示了，并转菊花
       options.type = 'image';
@@ -208,7 +201,7 @@ class Actions {
           console.log(`上传进度: ${obj.percentage}`);
           console.log(`上传进度文本: ${obj.percentageText}`);
         },
-        done: (error, { name, url, ext }) => {
+        done: (error, {name, url, ext}) => {
           const file = {
             name,
             url,
@@ -218,7 +211,7 @@ class Actions {
             size: options.size,
             ext,
           };
-          const { scene, to } = options;
+          const {scene, to} = options;
           if (!error) {
             const msg = constObj.nim.sendFile({
               type: 'image',
@@ -256,7 +249,7 @@ class Actions {
   };
 
   @action
-  sendAudioMsg = (options) => {
+  sendAudioMsg = options => {
     if (constObj.nim) {
       constObj.nim.previewFile({
         type: 'audio',
@@ -267,7 +260,7 @@ class Actions {
           console.log(`上传进度: ${obj.percentage}`);
           console.log(`上传进度文本: ${obj.percentageText}`);
         },
-        done: (error, { name, url, ext }) => {
+        done: (error, {name, url, ext}) => {
           const file = {
             name,
             url,
@@ -276,7 +269,7 @@ class Actions {
             size: options.size,
             ext,
           };
-          const { scene, to } = options;
+          const {scene, to} = options;
           if (!error) {
             const msg = constObj.nim.sendFile({
               type: 'audio',
@@ -306,18 +299,16 @@ class Actions {
   };
 
   @action sendMsgReceipt = (options = {}) => {
-    const { msg } = options;
+    const {msg} = options;
     constObj.nim.sendMsgReceipt({
       msg,
       done: function sendMsgReceiptDone(error) {
         if (error) {
-          Alert.alert('提示', error.message, [
-            { text: '确认' },
-          ]);
+          Alert.alert('提示', error.message, [{text: '确认'}]);
         }
       },
     });
-  }
+  };
 
   @action onBackoutMsg = (error, msg) => {
     // console.log(msg.to, msg.sessionId);
@@ -351,7 +342,7 @@ class Actions {
           return;
         }
         const idClient = msg.deletedIdClient || msg.idClient;
-        const { sessionId } = msg;
+        const {sessionId} = msg;
         this.replaceSessionMsg({
           sessionId,
           idClient,
@@ -361,20 +352,20 @@ class Actions {
     });
   };
 
-  @action backoutMsg = (msg) => {
+  @action backoutMsg = msg => {
     constObj.nim.deleteMsg({
       msg,
-      done: (error) => {
+      done: error => {
         // Alert.alert('提示', '撤回一条消息', [
         //   { text: '确认' },
         // ]);
         this.onBackoutMsg(error, msg);
       },
     });
-  }
+  };
 
-  @action getLocalMsgs =(sessionId, options = {}) => {
-    const { reset, end, done } = options;
+  @action getLocalMsgs = (sessionId, options = {}) => {
+    const {reset, end, done} = options;
     constObj.nim.getLocalMsgs({
       sessionId,
       limit: 20,
@@ -386,8 +377,8 @@ class Actions {
           if (sessionId === nimStore.currentSessionId) {
             let lastMsgTime = 0;
             obj.msgs = obj.msgs.sort((a, b) => a.time - b.time);
-            obj.msgs.forEach((msg) => {
-              if ((msg.time - lastMsgTime) > 1000 * 60 * 5) {
+            obj.msgs.forEach(msg => {
+              if (msg.time - lastMsgTime > 1000 * 60 * 5) {
                 lastMsgTime = msg.time;
                 tempMsgs.push({
                   type: 'timeTag',
@@ -398,7 +389,7 @@ class Actions {
               tempMsgs.push(msg);
             });
             if (!reset) {
-              nimStore.currentSessionMsgs.forEach((item) => {
+              nimStore.currentSessionMsgs.forEach(item => {
                 tempMsgs.push(item);
               });
             }
@@ -411,26 +402,24 @@ class Actions {
         }
       },
     });
-  }
+  };
 
   @action
-  deleteLocalMsgs = (options) => {
-    const { scene, to } = options;
+  deleteLocalMsgs = options => {
+    const {scene, to} = options;
     constObj.nim.deleteLocalMsgsBySession({
       scene,
       to,
-      done: (error) => {
+      done: error => {
         nimStore.currentSessionMsgs = [];
         if (options.done instanceof Function) {
           options.done(error);
         }
       },
     });
-  }
+  };
   @action
-  getHistoryMsgs = ({
-    scene, to, endTime, done,
-  }) => {
+  getHistoryMsgs = ({scene, to, endTime, done}) => {
     constObj.nim.getHistoryMsgs({
       scene,
       to,
@@ -440,9 +429,7 @@ class Actions {
       limit: 10,
       done(error, obj) {
         if (error) {
-          Alert.alert('提示', error.message, [
-            { text: '确认' },
-          ]);
+          Alert.alert('提示', error.message, [{text: '确认'}]);
           return;
         }
         if (done instanceof Function) {
@@ -450,12 +437,12 @@ class Actions {
         }
       },
     });
-  }
+  };
 
   @action
   clearSysMsgs = () => {
     nimStore.sysMsgs = [];
-  }
+  };
 }
 
 export default new Actions();

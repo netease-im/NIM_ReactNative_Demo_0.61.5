@@ -20,11 +20,14 @@ const base = {
   // 用户logo地址
   logo: 'https://yx-web.nos-hz.163yun.com/webdoc/h5/im/logo.png',
   // 默认用户头像
-  defaultUserIcon: 'https://yx-web.nos-hz.163yun.com/webdoc/h5/im/default-icon.png',
+  defaultUserIcon:
+    'https://yx-web.nos-hz.163yun.com/webdoc/h5/im/default-icon.png',
   // 默认普通群头像
-  defaultGroupIcon: 'https://yx-web.nos-hz.163yun.com/webdoc/h5/im/default-group.png',
+  defaultGroupIcon:
+    'https://yx-web.nos-hz.163yun.com/webdoc/h5/im/default-group.png',
   // 默认高级群头像
-  defaultAdvancedIcon: 'https://yx-web.nos-hz.163yun.com/webdoc/h5/im/default-advanced.png',
+  defaultAdvancedIcon:
+    'https://yx-web.nos-hz.163yun.com/webdoc/h5/im/default-advanced.png',
   // 系统通知图标
   noticeIcon: 'https://yx-web.nos-hz.163yun.com/webdoc/h5/im/notice-icon.png',
   // 我的手机图标
@@ -34,4 +37,3 @@ const base = {
 };
 
 export default Object.assign(base, appConfig[env]);
-

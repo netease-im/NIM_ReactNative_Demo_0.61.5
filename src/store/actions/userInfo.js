@@ -1,9 +1,9 @@
-import { observable, action } from 'mobx';
+import {observable, action} from 'mobx';
 import nimStore from '../stores/nim';
 import constObj from '../constant';
 
 class Actions {
-  @observable nimStore
+  @observable nimStore;
 
   @action
   getUserInfo = (account, callback) => {
@@ -26,7 +26,7 @@ class Actions {
         },
       });
     }
-  }
+  };
 }
 
 export default new Actions();

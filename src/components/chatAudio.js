@@ -1,7 +1,14 @@
 import React from 'react';
-import { View, Text, PanResponder, Alert, PermissionsAndroid, InteractionManager } from 'react-native';
-import { AudioRecorder, AudioUtils } from 'react-native-audio';
-import { chatStyle } from '../themes';
+import {
+  View,
+  Text,
+  PanResponder,
+  Alert,
+  PermissionsAndroid,
+  InteractionManager,
+} from 'react-native';
+import {AudioRecorder, AudioUtils} from 'react-native-audio';
+import {chatStyle} from '../themes';
 
 const holdRecordText = '按住 说话';
 const releaseRecordText = '松开 结束';
@@ -10,7 +17,7 @@ const abortRecordText = '滑动取消语音发送';
 export default class ChatBox extends React.Component {
   static defaultProps = {
     sendAudio() {},
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -47,18 +54,20 @@ export default class ChatBox extends React.Component {
     });
   }
   componentDidMount() {
-    this.checkRecordingPermission().then((hasPermission) => {
-      this.setState({ hasPermission });
+    this.checkRecordingPermission().then(hasPermission => {
+      this.setState({hasPermission});
 
-      if (!hasPermission) return;
+      if (!hasPermission) {
+        return;
+      }
 
       this.prepareRecordingPath(this.state.audioPath);
 
-      AudioRecorder.onProgress = (data) => {
-        this.setState({ currentTime: data.currentTime });
+      AudioRecorder.onProgress = data => {
+        this.setState({currentTime: data.currentTime});
       };
 
-      AudioRecorder.onFinished = (data) => {
+      AudioRecorder.onFinished = data => {
         // Android callback comes in the form of a promise instead.
         if (global.ISIOS) {
           this.finishedRecording(data.status === 'OK', data.audioFileURL);
@@ -76,7 +85,7 @@ export default class ChatBox extends React.Component {
     }
 
     if (!this.state.hasPermission) {
-      console.log('Can\'t record, no permission granted!');
+      console.log("Can't record, no permission granted!");
       return Promise.resolve();
     }
 
@@ -90,13 +99,16 @@ export default class ChatBox extends React.Component {
       recordText: releaseRecordText,
     });
     if (this.props.toast) {
-      this.props.toast.show('松开发送语音消息,\n语音时长最短2秒，\n语音录制中...', 2000);
+      this.props.toast.show(
+        '松开发送语音消息,\n语音时长最短2秒，\n语音录制中...',
+        2000,
+      );
     }
     return AudioRecorder.startRecording();
-  }
+  };
   abortRecord = () => {
     if (!this.state.recording) {
-      console.log('Can\'t abort, not recording!');
+      console.log("Can't abort, not recording!");
       return Promise.resolve();
     }
     this.setState({
@@ -106,7 +118,7 @@ export default class ChatBox extends React.Component {
       recordText: abortRecordText,
     });
     return AudioRecorder.stopRecording();
-  }
+  };
   endRecord = () => {
     if (!this.state.recording) {
       this.setState({
@@ -121,13 +133,13 @@ export default class ChatBox extends React.Component {
       recordText: holdRecordText,
     });
     if (global.ISANDROID) {
-      return AudioRecorder.stopRecording().then((filePath) => {
+      return AudioRecorder.stopRecording().then(filePath => {
         this.finishedRecording(true, filePath);
       });
     }
     AudioRecorder.stopRecording();
     return Promise.resolve();
-  }
+  };
   checkRecordingPermission() {
     if (global.ISIOS) {
       return Promise.resolve(true);
@@ -135,14 +147,17 @@ export default class ChatBox extends React.Component {
 
     const rationale = {
       title: 'Microphone Permission',
-      message: 'AudioExample needs access to your microphone so you can record audio.',
+      message:
+        'AudioExample needs access to your microphone so you can record audio.',
     };
 
-    return PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.RECORD_AUDIO, rationale)
-      .then((result) => {
-        console.log('Permission result:', result);
-        return (result === true || result === PermissionsAndroid.RESULTS.GRANTED);
-      });
+    return PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+      rationale,
+    ).then(result => {
+      console.log('Permission result:', result);
+      return result === true || result === PermissionsAndroid.RESULTS.GRANTED;
+    });
   }
   prepareRecordingPath(audioPath) {
     AudioRecorder.prepareRecordingAtPath(audioPath, {
@@ -166,17 +181,14 @@ export default class ChatBox extends React.Component {
       return;
     }
     InteractionManager.runAfterInteractions(() => {
-      if (this.state.needSend && (this.props.sendAudio instanceof Function)) {
+      if (this.state.needSend && this.props.sendAudio instanceof Function) {
         this.props.sendAudio(filePath, this.state.currentTime);
       }
     });
   }
   render() {
     return (
-      <View
-        style={chatStyle.chatBtn}
-        {...this._panResponder.panHandlers}
-      >
+      <View style={chatStyle.chatBtn} {...this._panResponder.panHandlers}>
         <Text style={chatStyle.chatBtnText}>{this.state.recordText}</Text>
       </View>
     );
