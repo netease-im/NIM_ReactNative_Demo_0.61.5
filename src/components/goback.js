@@ -1,7 +1,7 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import { Icon } from 'react-native-elements';
-import { headerStyle } from '../themes';
+import {TouchableOpacity} from 'react-native';
+import {Icon} from 'react-native-elements';
+import {headerStyle} from '../themes';
 
 export default class Component extends React.Component {
   goBack = () => {
@@ -9,11 +9,16 @@ export default class Component extends React.Component {
       this.props.callback();
     }
     this.props.navigation.goBack();
-  }
+  };
   render() {
     return (
       <TouchableOpacity onPress={this.goBack}>
-        <Icon name="ios-arrow-back" type="ionicon" color="#fff" iconStyle={headerStyle.icon} />
+        <Icon
+          name="ios-arrow-back"
+          type="ionicon"
+          color="#fff"
+          iconStyle={headerStyle.icon}
+        />
       </TouchableOpacity>
     );
   }

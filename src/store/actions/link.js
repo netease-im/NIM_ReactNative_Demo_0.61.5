@@ -1,17 +1,17 @@
-import { observable, action, set } from 'mobx';
-import { AsyncStorage, Alert } from 'react-native';
-import NetInfo from "@react-native-community/netinfo";
+import {observable, action, set} from 'mobx';
+import {AsyncStorage, Alert} from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
 import configs from '../../configs';
 import constObj from '../constant';
 import nimStore from '../stores/nim';
 import msgAction from './msg';
 import globalStatus from '../stores/status';
 import util from '../../util';
-import { showNotification } from '../../../nim/NIM_Android_Push';
+import {showNotification} from '../../../nim/NIM_Android_Push';
 
 const SDK = require('../../../nim/NIM_Web_SDK_rn_v8.3.0.js');
 const Realm = require('realm');
-const RNFS = require('react-native-fs')
+const RNFS = require('react-native-fs');
 
 const iosPushConfig = {
   // xcode debug 模式
@@ -19,7 +19,7 @@ const iosPushConfig = {
 
   // xcode release 模式，需要先打 ipa 包，装到手机上
   // tokenName: 'RN_APNS_PUSH_PRODUCT',
-  
+
 };
 const androidPushConfig = {
   xmAppId: '2882303761517806219',
@@ -31,11 +31,11 @@ const androidPushConfig = {
   mzAppKey: 'b74148973e6040c6abbda2af4c2f6779',
   mzCertificateName: 'RN_MZ_PUSH',
   fcmCertificateName: 'RN_FCM_PUSH',
-  vivoCertificateName: "RN_VIVO_PUSH",
-  oppoAppId: "30143442",
-  oppoAppKey: "e5acc9c313254c2f91aab7258d61981d",
-  oppoAppSercet: "0a6b35563ed04823b5765c994bb0a023",
-  oppoCertificateName: "RN_OPPO_PUSH"
+  vivoCertificateName: 'RN_VIVO_PUSH',
+  oppoAppId: '30143442',
+  oppoAppKey: 'e5acc9c313254c2f91aab7258d61981d',
+  oppoAppSercet: '0a6b35563ed04823b5765c994bb0a023',
+  oppoCertificateName: 'RN_OPPO_PUSH',,
 };
 
 SDK.usePlugin({
@@ -48,7 +48,7 @@ function onTeam(teams) {
   if (!Array.isArray(teams)) {
     teams = [teams];
   }
-  teams.forEach((team) => {
+  teams.forEach(team => {
     if (team.validToCurrentUser === undefined) {
       team.validToCurrentUser = true;
     }
@@ -67,19 +67,24 @@ function onSysMsgs(sysmsgs) {
   if (!Array.isArray(sysmsgs)) {
     sysmsgs = [sysmsgs];
   }
-  sysmsgs.forEach((sysmsg) => {
+  sysmsgs.forEach(sysmsg => {
     switch (sysmsg.type) {
       // 在其他端添加或删除好友
       case 'addFriend':
         // set(nimStore.friendFlags, sysmsg.from, true);
         if (sysmsg.friend) {
-          nimStore.friendslist = constObj.nim.mergeFriends(nimStore.friendslist, [sysmsg.friend]);
+          nimStore.friendslist = constObj.nim.mergeFriends(
+            nimStore.friendslist,
+            [sysmsg.friend],
+          );
           nimStore.friendFlags.set(sysmsg.from, true);
         }
         nimStore.sysMsgs.push(sysmsg);
         break;
       case 'applyFriend':
-        nimStore.sysMsgs = constObj.nim.mergeSysMsgs(nimStore.sysMsgs, [sysmsg]);
+        nimStore.sysMsgs = constObj.nim.mergeSysMsgs(nimStore.sysMsgs, [
+          sysmsg,
+        ]);
         nimStore.sysMsgs = nimStore.sysMsgs.sort((a, b) => a.time - b.time);
         break;
       case 'deleteFriend':
@@ -104,17 +109,18 @@ function onSysMsgs(sysmsgs) {
 }
 
 class Actions {
-  @observable nimStore
+  @observable nimStore;
 
   @action
-  onSession = (session) => {
-    nimStore.sessionlist = constObj.nim.mergeSessions(nimStore.sessionlist, session)
+  onSession = session => {
+    nimStore.sessionlist = constObj.nim
+      .mergeSessions(nimStore.sessionlist, session)
       .sort((a, b) => {
         const time1 = a.lastMsg ? a.lastMsg.time : a.updateTime;
         const time2 = b.lastMsg ? b.lastMsg.time : b.updateTime;
         return time2 - time1;
       });
-  }
+  };
 
   @action
   initNIM = (account, token, callback) => {
@@ -129,8 +135,7 @@ class Actions {
       syncTeams: true, // 同步群
       iosPushConfig,
       androidPushConfig,
-      onwillreconnect() {
-      },
+      onwillreconnect() {},
       ondisconnect(event) {
         AsyncStorage.removeItem('isLogin');
         let tipMsg = util.parseDisconnectMsg(event);
@@ -157,7 +162,7 @@ class Actions {
         Alert.alert('提示', '账号及离线消息同步完成');
         // constObj.nim.getLocalSessions({
         //   done(err, msgs) {
-        //     console.log('!!!!!!!!!', err, msgs.sessions.map(item => ({ 
+        //     console.log('!!!!!!!!!', err, msgs.sessions.map(item => ({
         //       id: item.id,
         //       updateTime: item.updateTime
         //     })));
@@ -182,7 +187,7 @@ class Actions {
         if (!Array.isArray(users)) {
           users = [users];
         }
-        users.forEach((user) => {
+        users.forEach(user => {
           const tempAccount = user.account;
           if (tempAccount) {
             const userInfo = nimStore.userInfos[tempAccount];
@@ -196,13 +201,16 @@ class Actions {
       },
       onupdateuser(user) {
         if (nimStore.userInfos[user.account]) {
-          nimStore.userInfos[user.account] = Object.assign(nimStore.userInfos[user.account], user);
+          nimStore.userInfos[user.account] = Object.assign(
+            nimStore.userInfos[user.account],
+            user,
+          );
         } else {
           nimStore.userInfos[user.account] = user;
         }
       },
       onfriends(friends) {
-        friends.forEach((item) => {
+        friends.forEach(item => {
           // set(nimStore.friendFlags, item.account, true);
           nimStore.friendFlags.set(item.account, true);
           const tempAccount = item.account;
@@ -215,19 +223,27 @@ class Actions {
             }
           }
         });
-        friends = friends.map((item) => {
+        friends = friends.map(item => {
           if (typeof item.isFriend !== 'boolean') {
             item.isFriend = true;
           }
           return item;
         });
-        nimStore.friendslist = constObj.nim.mergeFriends(nimStore.friendslist, friends);
-        nimStore.friendslist = constObj.nim.cutFriends(nimStore.friendslist, friends.invalid);
+        nimStore.friendslist = constObj.nim.mergeFriends(
+          nimStore.friendslist,
+          friends,
+        );
+        nimStore.friendslist = constObj.nim.cutFriends(
+          nimStore.friendslist,
+          friends.invalid,
+        );
       },
       onmsg(msg) {
         if (nimStore.currentSessionId === msg.sessionId) {
           // nimStore.currentSessionMsgs.push(msg);
-          nimStore.currentSessionMsgs = nimStore.currentSessionMsgs.concat([msg]);
+          nimStore.currentSessionMsgs = nimStore.currentSessionMsgs.concat([
+            msg,
+          ]);
           // set(nimStore, 'currentSessionMsgs', nimStore.currentSessionMsgs.concat([msg]));
           constObj.nim.sendMsgReceipt({
             msg,
@@ -245,7 +261,10 @@ class Actions {
             showText = util.mapMsgType(msg);
           }
           showNotification({
-            icon: '', title: msg.from, content: showText, time: `${msg.time}`,
+            icon: '',
+            title: msg.from,
+            content: showText,
+            time: `${msg.time}`,
           });
         }
       },
@@ -262,34 +281,35 @@ class Actions {
       onSignalingNotify: function(data) {
         console.log('收到通知包 :: onSignalingMutilClientSyncNotify');
         console.log(data);
-      }
+      },
     });
-  }
+  };
 
   @action
-  destroyNIM = () => new Promise((resolve, reject) => {
-    if (constObj.nim) {
-      constObj.nim.destroy({
-        done(error) {
-          constObj.nim = null;
-          nimStore.reset();
-          globalStatus.reset();
-          if (error) {
-            reject(error);
-          } else {
-            resolve();
-          }
-        },
-      });
-    } else {
-      resolve();
-    }
-  })
+  destroyNIM = () =>
+    new Promise((resolve, reject) => {
+      if (constObj.nim) {
+        constObj.nim.destroy({
+          done(error) {
+            constObj.nim = null;
+            nimStore.reset();
+            globalStatus.reset();
+            if (error) {
+              reject(error);
+            } else {
+              resolve();
+            }
+          },
+        });
+      } else {
+        resolve();
+      }
+    });
 
   @action
   login = (account, token, callback) => {
     this.initNIM(account, token, callback);
-  }
+  };
 
   @action
   logout = () => {
@@ -304,7 +324,7 @@ class Actions {
         },
       });
     }
-  }
+  };
 }
 
 export default new Actions();
