@@ -1,27 +1,26 @@
-[English README](./README_EN.md)
+[中文 README](./README.md)
 
+Node >= 10 is required
 
-需要 node 10
+## start
 
-## 启动
+Pre installed cocoapods, react native cli.
 
-前置该装 cocoapods，react-native-cli，自行搜索。
-
-clone 项目后
+After clone project
 
 ```
 $ npm install
 
-# pod 依赖安装，这一步可能你会遇到很多问题
+# pod install dependencies, you may encounter many problems in this step
 $ cd ios && pod install
 
 $ cd ../
 $ react-native run-ios
 ```
 
-pod 安装和 react-native 启动时遇到很多问题，记载了下来，[RN 0.57.8 与 0.60.5 的环境安装问题记录](https://www.cnblogs.com/everlose/p/13359557.html)
+Many problems were encountered during pod installation and react native startup, which were recorded [RN 0.57.8 and 0.60.5 environment installation problems]（https://www.cnblogs.com/everlose/p/13359557.html)
 
-有以下几个问题
+There are the following questions
 
 * Could not find iPhone X simulator
 * duplicate symbol '_RCTRemoteNotificationReceived'
@@ -31,17 +30,17 @@ pod 安装和 react-native 启动时遇到很多问题，记载了下来，[RN 0
 * Error: Unable to resolve module `@react-native-community/toolbar-android`
 
 
-## 调试
+## debug
 
-遇到问题
+Problems encountered:
 
 * Unable to find module for EventDispatcher React Native
 
-解决方法：Stop remote JS debugging and then reload the app
+solution：Stop remote JS debugging and then reload the app
 
-## 编译成不同版本的 IOS
+## Compiled into different versions of IOS
 
-寻找可用的 IOS simulator 设备
+Find available IOS Simulator Devices
 
 ```
 $ xcrun simctl list devices
@@ -87,7 +86,7 @@ $ xcrun simctl list devices
     iPad Air (3rd generation) (12108A85-B885-4EC6-A50A-DB24EA54BB7D) (Shutdown) 
 ```
 
-想起个 IOS 12，那么这样做
+If you want to run on IOS 12, do so
 
 ```
 react-native run-ios --simulator "iPhone 7 Plus"
