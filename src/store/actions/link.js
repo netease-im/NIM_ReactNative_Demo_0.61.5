@@ -1,4 +1,4 @@
-import {observable, action, set} from 'mobx';
+import {makeObservable, observable, action, set} from 'mobx';
 import {AsyncStorage, Alert} from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 import configs from '../../configs';
@@ -35,7 +35,7 @@ const androidPushConfig = {
   oppoAppId: '30143442',
   oppoAppKey: 'e5acc9c313254c2f91aab7258d61981d',
   oppoAppSercet: '0a6b35563ed04823b5765c994bb0a023',
-  oppoCertificateName: 'RN_OPPO_PUSH',,
+  oppoCertificateName: 'RN_OPPO_PUSH',
 };
 
 SDK.usePlugin({
@@ -110,6 +110,10 @@ function onSysMsgs(sysmsgs) {
 
 class Actions {
   @observable nimStore;
+
+  constructor() {
+    makeObservable(nimStore)
+  }
 
   @action
   onSession = session => {
