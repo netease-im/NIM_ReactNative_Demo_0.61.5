@@ -9,7 +9,8 @@ import globalStatus from '../stores/status';
 import util from '../../util';
 import {showNotification} from '../../../nim/NIM_Android_Push';
 
-const SDK = require('../../../nim/NIM_Web_SDK_rn_v8.3.0.js');
+// const SDK = require('../../../nim/NIM_Web_SDK_rn_v8.3.0.js');
+const SDK = require('../../../nim/NIM_Web_SDK_rn_v8.11.3.js');
 const Realm = require('realm');
 const RNFS = require('react-native-fs');
 
@@ -130,7 +131,7 @@ class Actions {
   initNIM = (account, token, callback) => {
     const self = this;
     constObj.nim = SDK.NIM.getInstance({
-      debug: false,
+      debug: true,
       appKey: configs.appkey,
       account,
       token,

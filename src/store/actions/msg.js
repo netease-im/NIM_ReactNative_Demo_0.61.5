@@ -153,6 +153,10 @@ class Actions {
             msg: newMsg,
           });
         },
+        beforesend: (msg) => {
+          console.log(`正在发送p2p image消息, id=${msg.idClient}`);
+          // pushMsg(msg);
+        },
       });
       this.appendSessionMsg(msg);
     }
@@ -247,6 +251,77 @@ class Actions {
       });
     }
   };
+
+  @action
+  sendFileMsgAction = options => {
+    if (constObj.nim) {
+      // 本地的图片先显示了，并转菊花
+      options.type = 'video';
+      const prevMsg = this.generateFakeMsg(options);
+      this.appendSessionMsg(prevMsg);
+      if (options.callback instanceof Function) {
+        options.callback();
+      }
+      constObj.nim.previewFile({
+        type: 'video',
+        filePath: options.filePath,
+        uploadprogress(obj) {
+          console.log(`文件总大小: ${obj.total}bytes`);
+          console.log(`已经上传的大小: ${obj.loaded}bytes`);
+          console.log(`上传进度: ${obj.percentage}`);
+          console.log(`上传进度文本: ${obj.percentageText}`);
+        },
+        done: (error, res) => {
+          const {name, url, ext, dur} = res
+          console.log('upload done', res)
+          const file = {
+            name,
+            url,
+            // w: options.width,
+            // h: options.height,
+            md5: options.md5,
+            size: options.size,
+            ext,
+          };
+          const {scene, to} = options;
+          if (!error) {
+            console.log('before sendFile', file)
+            const msg = constObj.nim.sendFile({
+              type: 'video',
+              scene,
+              to,
+              file,
+              done: (err, newMsg) => {
+                console.log('send file done', newMsg)
+                console.log('send file done', err)
+                if (err) {
+                  newMsg.status = 'fail';
+                }
+                // newMsg.file.pendingUrl = prevMsg.file.pendingUrl;
+                this.replaceSessionMsg({
+                  sessionId: newMsg.sessionId,
+                  idClient: newMsg.idClient,
+                  msg: newMsg,
+                });
+              },
+            });
+            // 替换本地假消息
+            const tempMsg = util.simpleClone(msg);
+            // tempMsg.file.pendingUrl = prevMsg.file.pendingUrl;
+            this.replaceSessionMsg({
+              sessionId: msg.sessionId,
+              // idClient: msg.idClient,
+              idClientFake: prevMsg.idClientFake,
+              msg: tempMsg,
+            });
+            if (options.callback instanceof Function) {
+              options.callback();
+            }
+          }
+        },
+      });
+    }
+  }
 
   @action
   sendAudioMsg = options => {

@@ -204,7 +204,55 @@ export class ChatBox extends React.Component {
   };
   sendFileMsg = () => {
     this.showExtra();
-    this.props.toast.show('Demo暂不支持发送文件消息');
+    // this.props.toast.show('Demo暂不支持发送文件消息');
+    const photoOptions = {
+      title: '请选择',
+      quality: 0.8,
+      cancelButtonTitle: '取消',
+      takePhotoButtonTitle: '录像',
+      chooseFromLibraryButtonTitle: '选择视频',
+      allowsEditing: true,
+      mediaType: 'video',
+      noData: false,
+      storageOptions: {
+        skipBackup: true,
+        path: 'video',
+      },
+    };
+    console.log('before choose video: ============')
+    ImagePicker.showImagePicker(photoOptions, response => {
+      // console.log('Response = ', response);
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        console.log('choose result ====>', response)
+        const fileOptions = {
+          scene: this.props.options.scene,
+          to: this.props.options.toAccount,
+          filePath: response.uri,
+          // width: response.width,
+          // height: response.height,
+          size: 1, // stat.size,
+          md5: uuid(), // MD5(fileData),
+          // pendingUrl: `data:${response.type};base64,${response.data}`,
+          callback: () => {
+            this.scrollToEnd();
+          },
+        };
+        this.props.action.sendFileMsgAction(fileOptions);
+        // RNFS.stat(filePath).then((stat) => {
+        //   fileOptions.size = stat.size;
+        // }).catch((error) => {
+        //   console.log(filePath, error);
+        // }).finally(() => {
+        //   this.props.action.sendImageMsg(fileOptions);
+        // });
+      }
+    });
   };
   scrollToEnd = () => {
     if (this.props.chatListRef) {
@@ -251,8 +299,8 @@ export class ChatBox extends React.Component {
           <View style={chatStyle.chatItemRow}>
             <ChatItem key={0} itemType="album" onPress={this.sendImgMsg} />
             <ChatItem key={1} itemType="camera" onPress={this.sendImgMsg} />
-            {/* <ChatItem key={2} itemType="location" onPress={this.sendGeoMsg} />
-            <ChatItem key={3} itemType="file" onPress={this.sendFileMsg} /> */}
+            {/* <ChatItem key={2} itemType="location" onPress={this.sendGeoMsg} /> */}
+            <ChatItem key={3} itemType="file" onPress={this.sendFileMsg} />
             <ChatItem key={4} itemType="play" onPress={this.sendPlayMsg} />
           </View>
         </View>
