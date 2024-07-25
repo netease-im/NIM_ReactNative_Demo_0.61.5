@@ -9,9 +9,8 @@ import globalStatus from '../stores/status';
 import util from '../../util';
 import {showNotification} from '../../../nim/NIM_Android_Push';
 
-// const SDK = require('../../../nim/NIM_Web_SDK_rn_v8.3.0.js');
-const SDK = require('../../../nim/NIM_Web_SDK_rn_v8.11.3.js');
-const Realm = require('realm');
+const SDK = require('../../../nim/NIM_Web_SDK_rn_v9.17.2.js');
+// const Realm = require('realm');
 const RNFS = require('react-native-fs');
 
 const iosPushConfig = {
@@ -39,9 +38,9 @@ const androidPushConfig = {
   oppoCertificateName: 'RN_OPPO_PUSH',
 };
 
-SDK.usePlugin({
-  db: Realm,
-});
+// SDK.usePlugin({
+//   db: Realm,
+// });
 SDK.usePlugin({
   rnfs: RNFS,
 });
@@ -133,9 +132,12 @@ class Actions {
     constObj.nim = SDK.NIM.getInstance({
       debug: true,
       appKey: configs.appkey,
+      lbsUrl: configs.lbsUrl,
+      defaultLink: configs.defaultLink,
+      privateConf: configs.privateConf || {},
       account,
       token,
-      db: true,
+      db: false,
       syncSessionUnread: true,
       syncTeams: true, // 同步群
       iosPushConfig,

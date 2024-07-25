@@ -1,7 +1,7 @@
 [English README](./README_EN.md)
 
 
-需要 node 10
+需要 node > 10
 
 ## 启动
 
@@ -91,4 +91,51 @@ $ xcrun simctl list devices
 
 ```
 react-native run-ios --simulator "iPhone 7 Plus"
+```
+
+
+## Android 调试的障碍
+
+试图用真机 android 调试
+
+1. 寻找插入的设备, 并连接进入开发者模式
+
+```
+% adb devices
+
+List of devices attached
+bb4167d8        device
+```
+
+2. 启动
+
+```
+% npx react-native run-android
+
+..... 省略中间日志, 显示错误
+
+error Failed to install the app. Make sure you have the Android development environment set up: https://reactnative.dev/docs/environment-setup.
+Error: Command failed: ./gradlew app:installDebug -PreactNativeDevServerPort=8081
+```
+
+使用 Android Studio 打开 nim_reactnative_demo/android 目录. 发现错误 `Cannot run program "node": error=2, No such file or directory`
+
+```
+# 可能是 nvm 的缘故, 使 android 找不到 node . 
+# 完全关闭 android studio 后, 利用下面的命令启动
+% open -a /Applications/Android\ Studio.app
+```
+
+Android Studio 在手机上安装了 app 后, 手机可能会出现无法连接服务的红屏幕报错, 可能需要运行
+
+```
+% adb reverse tcp:8081 tcp:8081
+# 再重启 metro 服务
+% npx react-native run-android
+```
+
+[启动后发现 android 的 图标全挂了](https://stackoverflow.com/questions/73552392/react-native-0-69-5-react-native-elements-icon-component-showing-just-x). 需要去 `android/app/build.gradle` 去添加图标字体路径
+
+```
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 ```

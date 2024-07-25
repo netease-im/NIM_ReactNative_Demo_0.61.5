@@ -6,11 +6,35 @@ const appConfig = {
   test: {
     appkey: 'fe416640c8e8a72734219e1847ad2547',
     postUrl: 'https://apptest.netease.im',
+    "lbsUrl": "https://imtest.netease.im/lbs/webconf",
+    "defaultLink": "imtest-jd.netease.im:8091",
   },
   online: {
     appkey: '45c6af3c98409b18a84451215d0bdd6e',
     postUrl: 'https://app.netease.im',
+    "lbsUrl": "https://lbs.netease.im/lbs/webconf.jsp",
+    "defaultLink": "weblink.netease.im",
   },
+  private: {
+    "appkey": "151e8e6d419bbfef04997790e230b950",
+    postUrl: 'https://app.netease.im',
+    "lbsUrl": "https://solution-demo.netease.im:5443/lbs/webconf.jsp",
+    "defaultLink": "solution-demo.netease.im:5443",
+    privateConf: {
+      "isDataReportEnable": false,
+      "isABTestEnable": false,
+      "isMixStoreEnable": false,
+      "loginSDKTypeParamCompat": true,
+      "nos_lbs": "https://solution-demo.netease.im:5443/lbs/noslbs.jsp",
+      "nos_uploader_web": "https://solution-demo.netease.im:5443",
+      "nos_uploader_host": "solution-demo.netease.im",
+      "https_enabled": true,
+      "nos_downloader": "solution-demo.netease.im:5443/{bucket}/{object}",
+      "nos_accelerate": "",
+      "nos_accelerate_host": ""
+    }
+      
+  }
 };
 
 const base = {
