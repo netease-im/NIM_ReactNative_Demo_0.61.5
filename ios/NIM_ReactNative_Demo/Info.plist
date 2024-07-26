@@ -38,7 +38,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
-    <string>NIM 想要读取您的相册用于发送消息</string>
+	<string>NIM 想要读取您的相册用于发送消息</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

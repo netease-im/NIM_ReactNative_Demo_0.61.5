@@ -93,6 +93,15 @@ $ xcrun simctl list devices
 react-native run-ios --simulator "iPhone 7 Plus"
 ```
 
+截至 24 年 我的系统和 xcode 都已经升级到最新,  ios 会编译不过提示 `Called object type 'facebook::flipper::SocketMessageHandler' (aka 'int') is not a function or function pointer`
+
+需要升级 flipper.  找到 ios/Podfile 文件, 找到 `flipper` 的依赖
+
+```
+// 原代码是 use_flipper!() 改为以下的代码强行升级 Flipper
+use_flipper!({ 'Flipper' => '0.250.0' })
+```
+
 
 ## Android 调试的障碍
 
