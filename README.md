@@ -148,3 +148,88 @@ Android Studio 在手机上安装了 app 后, 手机可能会出现无法连接�
 ```
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 ```
+
+## iOS 推送
+
+1. 项目添加推送能力
+
+打开 MyProject.xcworkspace，选择项目"MyProject",继续选择选项卡"Signing & Capabilities", 点击"+"按钮，添加2项新的能力
+
+- `Background Mode` capability and tick `Remote Notifications`.
+- `Push Notifications` capability
+
+2. 你需要在 AppDelegate 中启用推送通知的支持以及注册相应的事件。 
+
+在AppDelegate.h开头:
+
+```objective-c
+#import <UserNotifications/UNUserNotificationCenter.h>
+```
+然后添加 'UNUserNotificationCenterDelegate' 
+
+在RN v0.71以上版本
+
+```objective-c
+@interface AppDelegate : RCTAppDelegate <UNUserNotificationCenterDelegate>
+```
+在RN v0.70一下版本
+
+```objective-c
+@interface AppDelegate : UIResponder <UIApplicationDelegate, RCTBridgeDelegate, UNUserNotificationCenterDelegate>
+```
+
+在AppDelegate.m开头：
+
+```objective-c
+#import <UserNotifications/UserNotifications.h>
+#import <RNCPushNotificationIOS.h>
+```
+
+在AppDelegate 实现,添加下面代码
+
+```objective-c
+// Required for the register event.
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+ [RNCPushNotificationIOS didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+}
+// Required for the notification event. You must call the completion handler after handling the remote notification.
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+  [RNCPushNotificationIOS didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
+}
+// Required for the registrationError event.
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+ [RNCPushNotificationIOS didFailToRegisterForRemoteNotificationsWithError:error];
+}
+// Required for localNotification event
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+didReceiveNotificationResponse:(UNNotificationResponse *)response
+         withCompletionHandler:(void (^)(void))completionHandler
+{
+  [RNCPushNotificationIOS didReceiveNotificationResponse:response];
+}
+```
+
+继续添加下面的代码
+
+```objective-c
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+  ...
+  // Define UNUserNotificationCenter
+  UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+  center.delegate = self;
+
+  return YES;
+}
+
+//Called when a notification is delivered to a foreground app.
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
+{
+  completionHandler(UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionBadge);
+}
+```
+
