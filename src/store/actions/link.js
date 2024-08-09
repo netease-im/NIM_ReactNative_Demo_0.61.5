@@ -9,7 +9,7 @@ import globalStatus from '../stores/status';
 import util from '../../util';
 import {showNotification} from '../../../nim/NIM_Android_Push';
 
-const SDK = require('../../../nim/NIM_Web_SDK_rn_v9.17.2.js');
+const SDK = require('../../../nim/NIM_Web_SDK_rn_v9.18.0.js');
 // const Realm = require('realm');
 const RNFS = require('react-native-fs');
 
@@ -36,6 +36,8 @@ const androidPushConfig = {
   oppoAppKey: 'e5acc9c313254c2f91aab7258d61981d',
   oppoAppSercet: '0a6b35563ed04823b5765c994bb0a023',
   oppoCertificateName: 'RN_OPPO_PUSH',
+  // 荣耀推送
+  honorCertificateName: 'DEMO_HONOR_PUSH'
 };
 
 // SDK.usePlugin({

@@ -1,12 +1,19 @@
-package com.nim_reactnative_demo;
+package com.netease.nim.demo;
 
 import android.app.Application;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
+import androidx.annotation.Nullable;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.netease.nim.rn.push.NIMPushPackage;
+import com.netease.nimlib.rnpush.log.RNLog;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -24,7 +31,8 @@ public class MainApplication extends Application implements ReactApplication {
           @SuppressWarnings("UnnecessaryLocalVariable")
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
-          // packages.add(new MyReactNativePackage());
+          // add push package
+           packages.add(new NIMPushPackage());
           return packages;
         }
 
@@ -42,8 +50,19 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+    RNLog.setPrintToLogcat(BuildConfig.DEBUG);
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this); // Remove this line if you don't want Flipper enabled
+  }
+
+  //兼容android 14
+  @Override
+  public Intent registerReceiver(@Nullable BroadcastReceiver receiver, IntentFilter filter) {
+    if (Build.VERSION.SDK_INT >= 34 && getApplicationInfo().targetSdkVersion >= 34) {
+      return super.registerReceiver(receiver, filter, 2);
+    } else {
+      return super.registerReceiver(receiver, filter);
+    }
   }
 
   /**

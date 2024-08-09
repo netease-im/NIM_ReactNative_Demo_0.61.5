@@ -1,10 +1,10 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 26
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -18,7 +18,19 @@ android {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.+'
-    implementation "com.facebook.react:react-native:+"
+    compileOnly fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    api "com.facebook.react:react-native:+"
+
+    api 'com.netease.nimlib:push:9.17.1'
+    api 'com.netease.nimlib:basesdk:9.17.1'
+
+    compileOnly 'com.hihonor.mcs:push:7.0.61.303'
+    compileOnly 'com.huawei.hms:push:6.12.0.300'
+    compileOnly 'com.meizu.flyme.internet:push-internal:4.3.0'
+    compileOnly 'com.google.android.gms:play-services-base:18.5.0'
+    compileOnly 'com.google.firebase:firebase-messaging:24.0.0'
+    compileOnly 'com.google.firebase:firebase-core:21.1.1'
+
+    compileOnly 'com.google.code.gson:gson:2.8.1'
+    compileOnly 'commons-codec:commons-codec:1.11'
 }

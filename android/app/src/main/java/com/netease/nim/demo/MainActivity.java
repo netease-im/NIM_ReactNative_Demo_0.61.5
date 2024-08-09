@@ -1,4 +1,4 @@
-package com.nim_reactnative_demo;
+package com.netease.nim.demo;
 
 import com.facebook.react.ReactActivity;
 
