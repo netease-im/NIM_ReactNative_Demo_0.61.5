@@ -1,0 +1,365 @@
+ INFO  "[NIM INFO 10-10 15:26:39:968 IM]  link::resetConnect: needReconnect true"
+ INFO  "[NIM INFO 10-10 15:26:39:986 IM]  link::connect: connect to new socket, autoconnect is false"
+ LOG  "[NIM LOG 10-10 15:26:39:988 IM]  auth::life cycle addressing"
+ LOG  "[NIM LOG 10-10 15:26:39:990 IM]  auth::life cycle loginStatus:"
+ LOG  2
+ LOG  "[NIM LOG 10-10 15:26:39:992 IM]  doRequestBackupLbsUrls: use lbs url in index "
+ LOG  0
+ LOG  [
+    "https://lbs.netease.im/lbs/webconf.jsp"
+]
+ INFO  "[NIM INFO 10-10 15:26:39:996 IM]  doRequestLbs https://lbs.netease.im/lbs/webconf.jsp?id=cjhz11&sv=91800&pv=1&networkType=0&hostEnv=RN&k="
+ INFO  "[NIM INFO 10-10 15:26:40:179 IM]  abTestConfigRequset::success"
+ INFO  {
+    "experiments": [
+        {
+            "experimentKey": "heartBeatInterval",
+            "schemeKey": "open_flow",
+            "variates": [
+                {
+                    "type": "int",
+                    "value": 3000,
+                    "key": "time"
+                }
+            ],
+            "version": "1728544609036"
+        },
+        {
+            "experimentKey": "isBinaryTransmission",
+            "schemeKey": "open_flow",
+            "variates": [
+                {
+                    "type": "bool",
+                    "value": true,
+                    "key": "open"
+                }
+            ],
+            "version": "1726637603411"
+        }
+    ]
+}
+ INFO  "[NIM INFO 10-10 15:26:40:227 IM]  link::refreshSocketUrl: https://lbs.netease.im/lbs/webconf.jsp ajax load , got socket urls "
+ INFO  [
+    "https://weblink07.netease.im:443",
+    "https://weblink05.netease.im:443",
+    "https://weblink.netease.im:443"
+]
+ INFO  "[NIM INFO 10-10 15:26:40:232 IM]  link::connect: refreshSocketUrl success, "
+ INFO  [
+    "https://weblink07.netease.im:443",
+    "https://weblink05.netease.im:443",
+    "https://weblink.netease.im:443"
+]
+ LOG  "[NIM LOG 10-10 15:26:40:235 IM]  auth::life cycle connecting"
+ INFO  "[NIM INFO 10-10 15:26:40:243 IM]  link::connectToUrl 0: socket url: https://weblink07.netease.im:443, transports: [\"websocket\"]"
+ INFO  "[NIM INFO 10-10 15:26:40:338 IM]  link::onSocketInfo 0: xhr, readyState:2 status:200."
+ INFO  "[NIM INFO 10-10 15:26:40:342 IM]  link::onSocketInfo 0: xhr, readyState:3 status:200."
+ INFO  "[NIM INFO 10-10 15:26:40:346 IM]  link::onSocketInfo 0: xhr, readyState:4 status:200."
+ INFO  "[NIM INFO 10-10 15:26:40:347 IM]  link::onSocketInfo 0: xhr, responseText:a79500f8-24a9-4d0a-800a-5712f3117f09:90:30:websocket,xhr-polling."
+ INFO  "[NIM INFO 10-10 15:26:40:351 IM]  link::onSocketInfo 0: SocketIO handshake parameter: sid: a79500f8-24a9-4d0a-800a-5712f3117f09, transports: websocket,xhr-polling, close: 30, heartbeat: 90."
+ INFO  "[NIM INFO 10-10 15:26:40:357 IM]  link::onSocketInfo 0: check transport: websocket."
+ INFO  "[NIM INFO 10-10 15:26:40:361 IM]  link::onSocketInfo 0: use transport: websocket."
+ INFO  "[NIM INFO 10-10 15:26:40:364 IM]  link::onSocketInfo 0: tcp, connecting, transport ready in websocket."
+ INFO  "[NIM INFO 10-10 15:26:40:372 IM]  link::onSocketInfo 0: set new connect timeout."
+ INFO  "[NIM INFO 10-10 15:26:40:488 IM]  link::onSocketInfo 0: tcp, websocket onOpen."
+ INFO  "[NIM INFO 10-10 15:26:40:495 IM]  link::onSocketInfo 0: tcp, clear connect timeout due to recv connect event."
+ INFO  "[NIM INFO 10-10 15:26:40:498 IM]  link::connectToUrl 0 success"
+ INFO  "[NIM INFO 10-10 15:26:40:504 IM]  link::onConnect success"
+ LOG  "[NIM LOG 10-10 15:26:40:505 IM]  auth::life cycle connect success"
+ INFO  "[NIM INFO 10-10 15:26:40:508 IM]  push::addPushInfo:getDeviceInfo options: {\"appLogin\":1,\"appKey\":\"45c6af3c98409b18a84451215d0bdd6e\",\"account\":\"cjhz11\",\"token\":\"e10adc3949ba59abbe56e057f20f883e\",\"sdkVersion\":\"91800\",\"sdkHumanVersion\":\"9.18.0\",\"protocolVersion\":1,\"os\":\"\",\"browser\":\"react native \",\"clientType\":1,\"session\":\"52e34b35a4505c9f3a1c82c442878bfd\",\"deviceId\":\"a4db89cef3c3ccd7a3f5e86afc27776b\",\"isReactNative\":1,\"customTag\":\"\",\"userAgent\":\"\",\"libEnv\":\"React Native\",\"sdkType\":2}"
+ INFO  "[NIM INFO 10-10 15:26:40:510 IM]  push::initAndroidPush: regist android push: {\"xmAppId\":\"2882303761518540056\",\"xmAppKey\":\"5181854048056\",\"xmCertificateName\":\"DEMO_MI_PUSH\",\"hwAppId\":\"104770765\",\"hwCertificateName\":\"DEMO_HW_PUSH\",\"mzAppId\":\"111710\",\"mzAppKey\":\"282bdd3a37ec4f898f47c5bbbf9d2369\",\"mzCertificateName\":\"DEMO_MZ_PUSH\",\"fcmCertificateName\":\"DEMO_FCM_V0\",\"vivoCertificateName\":\"DEMO_VIVO_PUSH\",\"oppoAppId\":\"3477155\",\"oppoAppKey\":\"6clw0ue1oZ8cCOogKg488o0os\",\"oppoAppSercet\":\"e163705Bd018bABb3e2362C440A94673\",\"oppoCertificateName\":\"DEMO_OPPO_PUSH\",\"honorCertificateName\":\"DEMO_HONOR_PUSH\"}"
+ INFO  "[NIM INFO 10-10 15:26:40:612 IM]  push::addPushInfo:DeviceInfo: \"{\\\"PRODUCT\\\":\\\"meizu_16X_CN\\\",\\\"DEVICE\\\":\\\"16X\\\",\\\"MANUFACTURER\\\":\\\"Meizu\\\",\\\"BRAND\\\":\\\"Meizu\\\",\\\"MODEL\\\":\\\"16 X\\\",\\\"IS_SUPPORT_HONOR\\\":false,\\\"GOOGLE_PLAY_SERVICE\\\":1}\""
+ WARN  "[NIM WARN 10-10 15:26:40:614 IM]  link::doLogin: a79500f8-24a9-4d0a-800a-5712f3117f09 appLogin is 1"
+ LOG  "[NIM DEBUG 10-10 15:26:40:618 IM]  protocol::sendCmd: {\"SID\":2,\"CID\":3,\"SER\":1,\"timeout\":8000,\"hasPacketResponse\":true,\"hasPacketTimer\":true,\"Q\":[{\"t\":\"Property\",\"v\":{\"3\":1,\"4\":\"\",\"6\":\"91800\",\"8\":1,\"9\":1,\"13\":\"a4db89cef3c3ccd7a3f5e86afc27776b\",\"18\":\"45c6af3c98409b18a84451215d0bdd6e\",\"19\":\"cjhz11\",\"24\":\"react native \",\"26\":\"52e34b35a4505c9f3a1c82c442878bfd\",\"32\":\"{\\\"PRODUCT\\\":\\\"meizu_16X_CN\\\",\\\"DEVICE\\\":\\\"16X\\\",\\\"MANUFACTURER\\\":\\\"Meizu\\\",\\\"BRAND\\\":\\\"Meizu\\\",\\\"MODEL\\\":\\\"16 X\\\",\\\"IS_SUPPORT_HONOR\\\":false,\\\"GOOGLE_PLAY_SERVICE\\\":1}\",\"38\":\"\",\"40\":\"9.18.0\",\"41\":2,\"42\":\"\",\"44\":\"React Native\",\"112\":1,\"1000\":\"e10adc3949ba59abbe56e057f20f883e\"}}]}"
+ LOG  "[NIM DEBUG 10-10 15:26:40:716 IM]  protocol::recvCmd: {\"ser\":1,\"sid\":2,\"cid\":3,\"code\":200,\"r\":[{\"17\":\"\",\"102\":\"a79500f8-24a9-4d0a-800a-5712f3117f09\",\"38\":\"\",\"103\":\"183.136.182.141\",\"104\":\"53964\",\"106\":\"\"},[],{\"110\":\"7\",\"111\":\"0\"}],\"key\":0}"
+ INFO  "[NIM INFO 10-10 15:26:40:718 IM]  push::loginAndroidPush account: cjhz11; pushType: 7"
+ INFO  "[NIM INFO 10-10 15:26:40:721 IM]  link::resetReconnectStatus: reset retryCount and backoff"
+ WARN  "[NIM WARN 10-10 15:26:40:723 IM]  initOnlineListener no quickReconnect"
+ LOG  "[NIM LOG 10-10 15:26:40:726 IM]  auth::life cycle login success, verify authentication success"
+ LOG  "[NIM LOG 10-10 15:26:40:728 IM]  auth::life cycle loginStatus:"
+ LOG  1
+ INFO  "[NIM INFO 10-10 15:26:40:729 IM]  ReporterHook::reset"
+ LOG  "[NIM DEBUG 10-10 15:26:40:730 IM]  protocol::sendCmd: {\"SID\":6,\"CID\":26,\"SER\":2,\"timeout\":8000,\"hasPacketResponse\":true,\"hasPacketTimer\":true,\"Q\":[]}"
+ LOG  "[NIM DEBUG 10-10 15:26:40:732 IM]  protocol::sendCmd: {\"SID\":6,\"CID\":27,\"SER\":3,\"timeout\":8000,\"hasPacketResponse\":true,\"hasPacketTimer\":true,\"Q\":[{\"t\":\"Property\",\"v\":{}}]}"
+ INFO  "[NIM INFO 10-10 15:26:40:734 IM]  push::initPushEvent"
+ INFO  "[NIM INFO 10-10 15:26:40:735 IM]  link::afterLogin: no db"
+ INFO  "[NIM INFO 10-10 15:26:40:736 IM]  link::notifyLogin: on connect"
+ INFO  {
+    "lastLoginDeviceId": "",
+    "customTag": "",
+    "connectionId": "a79500f8-24a9-4d0a-800a-5712f3117f09",
+    "ip": "183.136.182.141",
+    "port": "53964",
+    "country": ""
+}
+ INFO  "[NIM INFO 10-10 15:26:40:739 IM]  trigger cb: onconnect"
+ WARN  [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: Stores@1.userID
+ LOG  "[NIM LOG 10-10 15:26:40:853 IM]  sync::syncData: syncing = true"
+ INFO  "[NIM INFO 10-10 15:26:40:854 IM]  syncData:: start sync"
+ INFO  {
+    "myInfo": 0,
+    "deleteMsgSelf": 0,
+    "offlineMsgs": 0,
+    "relations": 0,
+    "friends": 0,
+    "friendUsers": 0,
+    "teams": 0,
+    "superTeams": 0,
+    "sessionAck": 0,
+    "superTeamSessionAck": 0,
+    "roamingMsgs": 0,
+    "superTeamRoamingMsgs": 0,
+    "msgReceipts": 0,
+    "myTeamMembers": 0,
+    "myInfoInSuperTeams": 0,
+    "donnop": 0,
+    "deleteMsg": 0,
+    "deleteSuperTeamMsg": 0,
+    "sessionHistoryMsgsDelete": 0,
+    "netcallMsgs": 0,
+    "avSignal": 0
+}
+ INFO  "[NIM INFO 10-10 15:26:40:856 IM]  ReporterHook::setMonitorForSync: sync start"
+ LOG  "[NIM DEBUG 10-10 15:26:40:857 IM]  protocol::sendCmd: {\"SID\":5,\"CID\":1,\"SER\":4,\"timeout\":180000,\"hasPacketResponse\":true,\"hasPacketTimer\":true,\"Q\":[{\"t\":\"Property\",\"v\":{\"1\":0,\"2\":0,\"3\":0,\"6\":0,\"7\":0,\"9\":0,\"11\":0,\"13\":0,\"14\":0,\"15\":0,\"16\":0,\"17\":0,\"18\":0,\"21\":0,\"22\":0,\"23\":0,\"24\":0,\"25\":0,\"26\":0,\"27\":0,\"29\":0}}]}"
+ LOG  "[NIM DEBUG 10-10 15:26:40:882 IM]  protocol::recvCmd: {\"ser\":2,\"sid\":6,\"cid\":26,\"code\":200,\"r\":[{}],\"key\":0}"
+ LOG  "[NIM DEBUG 10-10 15:26:40:885 IM]  protocol::recvCmd: {\"ser\":3,\"sid\":6,\"cid\":27,\"code\":200,\"r\":[{\"0\":\"{\\\"eidEnable\\\":false,\\\"mixStoreEnable\\\":true,\\\"abTestIntervalFlag\\\":true}\",\"1\":\"300\"}],\"key\":0}"
+ LOG  "[NIM DEBUG 10-10 15:26:40:887 IM]  protocol::sendCmd: {\"SID\":6,\"CID\":28,\"SER\":5,\"timeout\":8000,\"hasPacketResponse\":true,\"hasPacketTimer\":true,\"Q\":[{\"t\":\"LongArray\",\"v\":[1]}]}"
+ LOG  "[NIM DEBUG 10-10 15:26:40:890 IM]  protocol::recvCmd: {\"ser\":0,\"sid\":6,\"cid\":31,\"code\":200,\"r\":[{\"1\":\"1\",\"100\":\"1728545200788\",\"101\":\"1728545200787\"}],\"key\":0}"
+ LOG  "[NIM DEBUG 10-10 15:26:40:892 IM]  protocol::sendCmd: {\"SID\":6,\"CID\":32,\"SER\":6,\"timeout\":8000,\"hasPacketResponse\":false,\"hasPacketTimer\":true,\"Q\":[{\"t\":\"Property\",\"v\":{\"1\":\"1\",\"100\":\"1728545200788\",\"101\":\"1728545200787\",\"102\":1728545200892,\"103\":1728545200892}}]}"
+ INFO  "[NIM INFO 10-10 15:26:40:897 IM]  ReporterHook::setMonitorForSync: receive sync item: 30109, total: 1"
+ LOG  "[NIM DEBUG 10-10 15:26:40:897 IM]  protocol::recvCmd: {\"ser\":4,\"sid\":3,\"cid\":109,\"code\":200,\"r\":[{\"1\":\"cjhz11\",\"2\":\"11003\",\"3\":\"cjhz11\",\"4\":\"https://nim-nosdn.netease.im/MTAxMTAwMg==/bmltYV8yMjQ2NDYzMzQzMl8xNjcwMjk2NzQ4NTExXzRjMjIxMTRmLTFhN2EtNDExNS05OGNlLWExMzFhMmMzNzI5Yg==?createTime=1670296748808\",\"6\":\"0\",\"11\":\"22464633432\",\"12\":\"1606877292683\",\"13\":\"1670296752903\"},1728545200800],\"key\":0}"
+ INFO  "[NIM INFO 10-10 15:26:40:911 IM]  ReporterHook::setMonitorForSync: receive sync item: 80109, total: 8"
+ LOG  "[NIM DEBUG 10-10 15:26:40:911 IM]  protocol::recvCmd: {\"ser\":4,\"sid\":8,\"cid\":109,\"code\":200,\"r\":[1728545200801,[{\"1\":\"3921756992\",\"2\":\"11003\",\"3\":\"高级群\",\"4\":\"1\",\"100\":\"0\",\"5\":\"cjhz11\",\"101\":\"0\",\"6\":\"2000\",\"8\":\"1\",\"9\":\"1\",\"10\":\"1632218931080\",\"11\":\"1632218931080\",\"12\":\"1632218931080\",\"13\":\"1\",\"14\":\"群简介\",\"15\":\"群公告\",\"16\":\"1\",\"17\":\"0\",\"20\":\"avatar\",\"21\":\"0\",\"22\":\"0\",\"23\":\"0\",\"24\":\"0\"},{\"1\":\"21611841468\",\"2\":\"11003\",\"3\":\"高级群\",\"4\":\"1\",\"100\":\"0\",\"5\":\"cjhz11\",\"101\":\"0\",\"6\":\"2000\",\"8\":\"1\",\"9\":\"1\",\"10\":\"1713355295423\",\"11\":\"1713355295423\",\"12\":\"1713355295423\",\"13\":\"1\",\"14\":\"群简介\",\"15\":\"群公告\",\"16\":\"1\",\"17\":\"0\",\"20\":\"avatar\",\"21\":\"0\",\"22\":\"0\",\"23\":\"0\",\"24\":\"0\"},{\"1\":\"8423901006\",\"2\":\"11003\",\"3\":\"高级群\",\"4\":\"1\",\"100\":\"0\",\"5\":\"cjhz11\",\"101\":\"0\",\"6\":\"20002\",\"8\":\"1\",\"9\":\"3\",\"10\":\"1674973066842\",\"11\":\"1674973066842\",\"12\":\"1674973066842\",\"13\":\"1\",\"14\":\"群简介\",\"15\":\"群公告\",\"16\":\"1\",\"17\":\"0\",\"20\":\"avatar\",\"21\":\"1\",\"22\":\"0\",\"23\":\"0\",\"24\":\"0\"},{\"1\":\"3814670906\",\"2\":\"11003\",\"3\":\"cjhz11、cjhz12、王司徒倒悬扫等人\",\"4\":\"1\",\"100\":\"0\",\"5\":\"cjhz11\",\"101\":\"0\",\"6\":\"2000\",\"8\":\"1\",\"9\":\"2\",\"10\":\"1611303486465\",\"11\":\"1611303475690\",\"12\":\"1611303486511\",\"13\":\"1\",\"16\":\"1\",\"17\":\"0\",\"21\":\"0\",\"22\":\"0\",\"23\":\"0\",\"24\":\"0\"},{\"1\":\"2927766564\",\"2\":\"11003\",\"3\":\"cjhz11、cjhz12、王司徒倒悬扫等人\",\"4\":\"1\",\"100\":\"0\",\"5\":\"cjhz11\",\"101\":\"0\",\"6\":\"2000\",\"8\":\"1\",\"9\":\"2\",\"10\":\"1606877993236\",\"11\":\"1606877837780\",\"12\":\"1606877993274\",\"13\":\"1\",\"16\":\"1\",\"17\":\"0\",\"21\":\"0\",\"22\":\"0\",\"23\":\"0\",\"24\":\"0\"},{\"1\":\"8422540332\",\"2\":\"11003\",\"3\":\"高级群\",\"4\":\"1\",\"100\":\"0\",\"5\":\"cjhz11\",\"101\":\"0\",\"6\":\"20002\",\"8\":\"1\",\"9\":\"4\",\"10\":\"1674972121297\",\"11\":\"1674972101616\",\"12\":\"1674972121341\",\"13\":\"1\",\"14\":\"群简介\",\"15\":\"群公告\",\"16\":\"0\",\"17\":\"0\",\"20\":\"avatar\",\"21\":\"1\",\"22\":\"0\",\"23\":\"0\",\"24\":\"0\"},{\"1\":\"5534844409\",\"2\":\"11003\",\"3\":\"懒觉群\",\"4\":\"1\",\"100\":\"0\",\"5\":\"cjhz12\",\"101\":\"0\",\"6\":\"20002\",\"8\":\"1\",\"9\":\"2\",\"10\":\"1657608236742\",\"11\":\"1657608236742\",\"12\":\"1657608236742\",\"13\":\"1\",\"14\":\"群简介\",\"15\":\"群公告\",\"16\":\"0\",\"17\":\"0\",\"20\":\"avatar\",\"21\":\"1\",\"22\":\"0\",\"23\":\"0\",\"24\":\"0\"},{\"1\":\"2933316073\",\"2\":\"11003\",\"3\":\"王司徒倒悬扫六合、cjhz11等人\",\"4\":\"0\",\"100\":\"0\",\"5\":\"wangsitu1\",\"101\":\"0\",\"6\":\"2000\",\"8\":\"1\",\"9\":\"2\",\"10\":\"1607946718135\",\"11\":\"1607946718135\",\"12\":\"1607946718135\",\"13\":\"1\",\"16\":\"0\",\"17\":\"0\",\"21\":\"0\",\"22\":\"0\",\"23\":\"0\",\"24\":\"0\"}]],\"key\":0}"
+ INFO  "[NIM INFO 10-10 15:26:40:923 IM]  ReporterHook::setMonitorForSync: receive sync item: 80126, total: 8"
+ LOG  "[NIM DEBUG 10-10 15:26:40:924 IM]  protocol::recvCmd: {\"ser\":4,\"sid\":8,\"cid\":126,\"code\":200,\"r\":[[{\"1\":\"21611841468\",\"3\":\"cjhz11\",\"4\":\"1\",\"5\":\"\",\"6\":\"0\",\"7\":\"0\",\"8\":\"1\",\"9\":\"1\",\"10\":\"1713355295423\",\"11\":\"1713355295423\",\"13\":\"0\",\"14\":\"\",\"16\":\"[]\"},{\"1\":\"8423901006\",\"3\":\"cjhz11\",\"4\":\"1\",\"5\":\"\",\"6\":\"0\",\"7\":\"0\",\"8\":\"1\",\"9\":\"1\",\"10\":\"1674973066842\",\"11\":\"1674973066842\",\"13\":\"0\",\"14\":\"\",\"16\":\"[]\"},{\"1\":\"8422540332\",\"3\":\"cjhz11\",\"4\":\"1\",\"5\":\"\",\"6\":\"0\",\"7\":\"0\",\"8\":\"1\",\"9\":\"1\",\"10\":\"1674972101616\",\"11\":\"1674972101616\",\"13\":\"0\",\"14\":\"\",\"16\":\"[]\"},{\"1\":\"5534844409\",\"3\":\"cjhz11\",\"4\":\"0\",\"5\":\"\",\"6\":\"22464635527\",\"7\":\"0\",\"8\":\"1\",\"9\":\"1\",\"10\":\"1657608236742\",\"11\":\"1657608236742\",\"13\":\"0\",\"14\":\"cjhz12\",\"16\":\"[]\"},{\"1\":\"3921756992\",\"3\":\"cjhz11\",\"4\":\"1\",\"5\":\"\",\"6\":\"0\",\"7\":\"0\",\"8\":\"1\",\"9\":\"1\",\"10\":\"1632218931080\",\"11\":\"1632218931080\",\"13\":\"0\",\"14\":\"\",\"16\":\"[]\"},{\"1\":\"3814670906\",\"3\":\"cjhz11\",\"4\":\"1\",\"5\":\"\",\"6\":\"0\",\"7\":\"0\",\"8\":\"1\",\"9\":\"1\",\"10\":\"1611303475690\",\"11\":\"1611303475690\",\"13\":\"0\",\"14\":\"\",\"16\":\"[]\"},{\"1\":\"2933316073\",\"3\":\"cjhz11\",\"4\":\"0\",\"5\":\"\",\"6\":\"19690070479\",\"7\":\"0\",\"8\":\"1\",\"9\":\"1\",\"10\":\"1607946718135\",\"11\":\"1607946720261\",\"13\":\"0\",\"14\":\"wangsitu1\",\"16\":\"[]\"},{\"1\":\"2927766564\",\"3\":\"cjhz11\",\"4\":\"1\",\"5\":\"\",\"6\":\"0\",\"7\":\"0\",\"8\":\"1\",\"9\":\"1\",\"10\":\"1606877837780\",\"11\":\"1606877837780\",\"13\":\"0\",\"14\":\"\",\"16\":\"[]\"}],1728545200805],\"key\":0}"
+ INFO  "[NIM INFO 10-10 15:26:40:932 IM]  ReporterHook::setMonitorForSync: receive sync item: 12005, total: 7"
+ LOG  "[NIM DEBUG 10-10 15:26:40:934 IM]  protocol::recvCmd: {\"ser\":4,\"sid\":12,\"cid\":5,\"code\":200,\"r\":[[{\"1\":\"22464633432\",\"2\":\"cjhz11\",\"3\":\"19690070479\",\"4\":\"wangsitu1\",\"5\":\"1\",\"6\":\"1\",\"7\":\"0\",\"9\":\"0\",\"11\":\"1606877814698\",\"12\":\"1606877814698\"},{\"1\":\"22464633432\",\"2\":\"cjhz11\",\"3\":\"1060326\",\"4\":\"cs5\",\"5\":\"1\",\"6\":\"1\",\"7\":\"0\",\"9\":\"0\",\"11\":\"1621858482929\",\"12\":\"1621858482929\"},{\"1\":\"22464633432\",\"2\":\"cjhz11\",\"3\":\"1060251\",\"4\":\"cs6\",\"5\":\"1\",\"6\":\"1\",\"7\":\"0\",\"9\":\"0\",\"11\":\"1622788416638\",\"12\":\"1622788416638\"},{\"1\":\"22464633432\",\"2\":\"cjhz11\",\"3\":\"1059549\",\"4\":\"cs4\",\"5\":\"1\",\"6\":\"1\",\"7\":\"0\",\"9\":\"0\",\"11\":\"1622788429978\",\"12\":\"1622788429978\"},{\"1\":\"22464633432\",\"2\":\"cjhz11\",\"3\":\"1059633\",\"4\":\"cs3\",\"5\":\"1\",\"6\":\"1\",\"7\":\"0\",\"9\":\"0\",\"11\":\"1622819498365\",\"12\":\"1622819498365\"},{\"1\":\"22464633432\",\"2\":\"cjhz11\",\"3\":\"1059697\",\"4\":\"cs1\",\"5\":\"1\",\"6\":\"1\",\"7\":\"0\",\"9\":\"0\",\"11\":\"1622819556990\",\"12\":\"1622819556990\"},{\"1\":\"22464633432\",\"2\":\"cjhz11\",\"3\":\"33714509493\",\"4\":\"xumengxiang\",\"5\":\"1\",\"6\":\"1\",\"7\":\"0\",\"9\":\"0\",\"11\":\"1631090739838\",\"12\":\"1631090739838\"}],1728545200806],\"key\":0}"
+ INFO  "[NIM INFO 10-10 15:26:40:936 IM]  friend::onFriends: parse friends"
+ INFO  [
+    "wangsitu1",
+    "cs5",
+    "cs6",
+    "cs4",
+    "cs3",
+    "cs1",
+    "xumengxiang"
+]
+ INFO  "delete"
+ INFO  []
+ INFO  "[NIM INFO 10-10 15:26:40:942 IM]  ReporterHook::setMonitorForSync: receive sync item: 12006, total: 7"
+ LOG  "[NIM DEBUG 10-10 15:26:40:943 IM]  protocol::recvCmd: {\"ser\":4,\"sid\":12,\"cid\":6,\"code\":200,\"r\":[[{\"1\":\"cs6\",\"2\":\"11003\",\"3\":\"cs6\",\"4\":\"https://nim.nosdn.127.net/MTAxMTAwMg==/bmltYV8xMDYwMjUxXzE1MzAxNzM3MDc5NDVfMjBiOWI1NWMtZDQyNS00ZWE4LWExZTYtMjgzNmM3M2NiZmNh\",\"6\":\"0\",\"11\":\"1060251\",\"12\":\"1444758216688\",\"13\":\"1530173709578\"},{\"1\":\"cs5\",\"2\":\"11003\",\"3\":\"cs5\",\"4\":\"https://nim-nosdn.netease.im/MTAxMTAwMg==/bmltYV8xMDYwMzI2XzE1OTc4MDM0MzgwMjFfMTU4MDYwY2ItNWEyNS00Yjk2LWE4YjYtODc0ZWY4MmVmNjBm?createTime=1597803500852\",\"5\":\"\",\"6\":\"0\",\"7\":\"\",\"8\":\"\",\"9\":\"\",\"11\":\"1060326\",\"12\":\"1444758371372\",\"13\":\"1597803498838\"},{\"1\":\"wangsitu1\",\"2\":\"11003\",\"3\":\"王司徒倒悬扫六合\",\"4\":\"https://nim-nosdn.netease.im/MTAxMTAwMg==/bmltYV8xOTY5MDA3MDQ3OV8xNTk5NDY5MTMwNjMxX2JiMDE1MDljLTdlOGMtNGY2Ni05YjIxLTQxODJmZTM0ZjY5YQ==?createTime=1599469130759\",\"5\":\"老僧今日大发慈悲，这就渡你轮回转世\",\"6\":\"1\",\"7\":\"chentongta@163.com\",\"8\":\"1993-01-01\",\"9\":\"18358182690\",\"10\":\"{type=newCustom, value=new}\",\"11\":\"19690070479\",\"12\":\"1594631097675\",\"13\":\"1600430917906\"},{\"1\":\"xumengxiang\",\"2\":\"11003\",\"3\":\"袄祥\",\"6\":\"0\",\"11\":\"33714509493\",\"12\":\"1630896761904\",\"13\":\"1630896761904\"},{\"1\":\"cs4\",\"2\":\"11003\",\"3\":\"newNickccc\",\"4\":\"https://yx-web-nosdn.netease.im/quickhtml%2Fassets%2Fyunxin%2Fnode-website%2F%E5%B0%8F%E8%99%BE%E7%B1%B31.png\",\"5\":\"newSign\",\"6\":\"1\",\"7\":\"new@email.com\",\"8\":\"2020-01-01\",\"9\":\"13523578129\",\"10\":\"{type: \\\"newCustom\\\", value: \\\"new\\\"}\",\"11\":\"1059549\",\"12\":\"1444758079130\",\"13\":\"1643022731655\"},{\"1\":\"cs3\",\"2\":\"11003\",\"3\":\"newNick\",\"4\":\"https://nos.netease.com/nim/MTAxMTAwMg==/bmltYV8xMDU4NDc3XzE2ODM3ODc5OTQzMzlfMzU4NDExYTktNTgwMi00OGQ3LWFlNjMtMzQyZmVmYmIxNmFh?createTime=1683787994500\",\"5\":\"newSign\",\"6\":\"1\",\"7\":\"new@email.com\",\"8\":\"2020-01-01\",\"9\":\"13523578129\",\"10\":\"{type: \\\"newCustom\\\", value: \\\"new\\\"}\",\"11\":\"1059633\",\"12\":\"1444758253888\",\"13\":\"1684399197114\"},{\"1\":\"cs1\",\"2\":\"11003\",\"3\":\"newNick\",\"4\":\"https://nos.netease.com/nim/MTAxMTAwMg==/bmltYV8xMDU4NDc3XzE2ODM3ODc5OTQzMzlfMzU4NDExYTktNTgwMi00OGQ3LWFlNjMtMzQyZmVmYmIxNmFh?createTime=1683787994508\",\"5\":\"newSign\",\"6\":\"1\",\"7\":\"new@email.com\",\"8\":\"2020-01-01\",\"9\":\"13523578129\",\"10\":\"{type: \\\"newCustom\\\", value: \\\"new\\\"}\",\"11\":\"1059697\",\"12\":\"1444758371464\",\"13\":\"1684401455647\"}],1728545200808],\"key\":0}"
+ INFO  "[NIM INFO 10-10 15:26:40:947 IM]  friend::onFriendUsers: parse users"
+ INFO  [
+    "cs6",
+    "cs5",
+    "wangsitu1",
+    "xumengxiang",
+    "cs4",
+    "cs3",
+    "cs1"
+]
+ LOG  "[NIM DEBUG 10-10 15:26:40:955 IM]  protocol::recvCmd: {\"ser\":4,\"sid\":4,\"cid\":25,\"code\":200,\"r\":[{\"1\":\"0\",\"2\":\"1\"},[]],\"key\":0}"
+ LOG  "[NIM DEBUG 10-10 15:26:40:961 IM]  protocol::recvCmd: {\"ser\":4,\"sid\":15,\"cid\":14,\"code\":200,\"r\":[[]],\"key\":0}"
+ LOG  "[NIM DEBUG 10-10 15:26:40:965 IM]  protocol::recvCmd: {\"ser\":4,\"sid\":5,\"cid\":1,\"code\":200,\"r\":[1728545200836],\"key\":0}"
+ LOG  "[NIM DEBUG 10-10 15:26:40:974 IM]  protocol::recvCmd: {\"ser\":5,\"sid\":6,\"cid\":28,\"code\":200,\"r\":[{\"0\":\"1\",\"1\":\"300\",\"3\":\"{\\\"dlcdn\\\":\\\"nim-nosdn.netease.im\\\",\\\"authPolicy\\\":{\\\"policyType\\\":\\\"-1\\\",\\\"authEnable\\\":false},\\\"dlcdns\\\":[\\\"nim.nosdn.127.net\\\",\\\"yunxin-test111-mixdn-nos.chatnos.com\\\",\\\"nim-nosdn.netease.im\\\",\\\"nosdn.127.net\\\",\\\"lyc.com\\\"],\\\"thumbPolicy\\\":{\\\"imagethumb\\\":\\\"https://{cdnDomain}/{objectName}?imageView&thumbnail={x}x{y}\\\",\\\"vframe\\\":\\\"https://{cdnDomain}/{objectName}?vframe&offset={offset}&resize={x}x{y}&type={type}\\\"},\\\"priority\\\":0,\\\"invalidToken\\\":0,\\\"cdnSchema\\\":\\\"https://{cdnDomain}/{objectName}\\\",\\\"uploadConfig\\\":{\\\"retryPolicy\\\":{\\\"retryNext\\\":true,\\\"circuit\\\":600,\\\"retry\\\":3}}}\",\"5\":\"0\"}],\"key\":0}"
+ LOG  "[NIM DEBUG 10-10 15:26:40:981 IM]  protocol::recvCmd: {\"ser\":6,\"sid\":6,\"cid\":32,\"code\":200,\"r\":[],\"key\":0}"
+ LOG  "[NIM LOG 10-10 15:26:40:991 IM]  sync::processSync cmd: syncDone"
+ INFO  "[NIM INFO 10-10 15:26:40:992 IM]  ReporterHook::setMonitorForSync: sync receive packet"
+ INFO  "[NIM INFO 10-10 15:26:40:995 IM]  sync::onSyncDone: after sync"
+ INFO  [
+    "myInfo",
+    "teams",
+    "friends",
+    "friendUsers"
+]
+ LOG  "[NIM LOG 10-10 15:26:41:000 IM]  afterSync::syncDonePromiseHandler syncPromiseArray length: "
+ LOG  0
+ LOG  "success count: "
+ LOG  1
+ LOG  "[NIM LOG 10-10 15:26:41:001 IM]  onSyncDone afterSync last syncDonePromsie. Execute taskAfterSync and notifyData"
+ INFO  "[NIM INFO 10-10 15:26:41:002 IM]  sync::onSyncDone: taskAfterSync"
+ INFO  "[NIM INFO 10-10 15:26:41:008 IM]  push::initAndroidPush: get android push:type = 7 tokenName = DEMO_MZ_PUSH token = 0EV4a03730d6a6647625054640670687f534304730462"
+ LOG  "[NIM DEBUG 10-10 15:26:41:009 IM]  protocol::sendCmd: {\"SID\":3,\"CID\":1,\"SER\":7,\"timeout\":8000,\"hasPacketResponse\":true,\"hasPacketTimer\":true,\"Q\":[{\"t\":\"String\",\"v\":\"DEMO_MZ_PUSH\"},{\"t\":\"String\",\"v\":\"0EV4a03730d6a6647625054640670687f534304730462\"}]}"
+ INFO  "[NIM INFO 10-10 15:26:41:012 IM]  sync::notifyDataAsync: on friends"
+ INFO  [
+    "wangsitu1",
+    "cs5",
+    "cs6",
+    "cs4",
+    "cs3",
+    "cs1",
+    "xumengxiang"
+]
+ INFO  "[NIM INFO 10-10 15:26:41:013 IM]  ReporterHook::setMonitorForSync: sync item 12005 callback done"
+ INFO  "[NIM INFO 10-10 15:26:41:014 IM]  trigger cb: onfriends"
+ INFO  "[NIM INFO 10-10 15:26:41:027 IM]  sync::notifyDataAsync: on myInfo"
+ INFO  "[NIM INFO 10-10 15:26:41:028 IM]  ReporterHook::setMonitorForSync: sync item 30109 callback done"
+ INFO  "[NIM INFO 10-10 15:26:41:029 IM]  trigger cb: onmyinfo"
+ INFO  "[NIM INFO 10-10 15:26:41:031 IM]  sync::notifyDataAsync: on myTeamMembers"
+ INFO  [
+    {
+        "teamId": "21611841468",
+        "account": "cjhz11",
+        "type": "owner",
+        "nickInTeam": "",
+        "active": true,
+        "valid": true,
+        "joinTime": 1713355295423,
+        "updateTime": 1713355295423,
+        "mute": false,
+        "invitorAccid": "",
+        "followAccountIds": [],
+        "muteTeam": false,
+        "muteNotiType": "0",
+        "id": "21611841468-cjhz11"
+    },
+    {
+        "teamId": "8423901006",
+        "account": "cjhz11",
+        "type": "owner",
+        "nickInTeam": "",
+        "active": true,
+        "valid": true,
+        "joinTime": 1674973066842,
+        "updateTime": 1674973066842,
+        "mute": false,
+        "invitorAccid": "",
+        "followAccountIds": [],
+        "muteTeam": false,
+        "muteNotiType": "0",
+        "id": "8423901006-cjhz11"
+    },
+    {
+        "teamId": "8422540332",
+        "account": "cjhz11",
+        "type": "owner",
+        "nickInTeam": "",
+        "active": true,
+        "valid": true,
+        "joinTime": 1674972101616,
+        "updateTime": 1674972101616,
+        "mute": false,
+        "invitorAccid": "",
+        "followAccountIds": [],
+        "muteTeam": false,
+        "muteNotiType": "0",
+        "id": "8422540332-cjhz11"
+    },
+    {
+        "teamId": "5534844409",
+        "account": "cjhz11",
+        "type": "normal",
+        "nickInTeam": "",
+        "active": true,
+        "valid": true,
+        "joinTime": 1657608236742,
+        "updateTime": 1657608236742,
+        "mute": false,
+        "invitorAccid": "cjhz12",
+        "followAccountIds": [],
+        "muteTeam": false,
+        "muteNotiType": "0",
+        "id": "5534844409-cjhz11"
+    },
+    {
+        "teamId": "3921756992",
+        "account": "cjhz11",
+        "type": "owner",
+        "nickInTeam": "",
+        "active": true,
+        "valid": true,
+        "joinTime": 1632218931080,
+        "updateTime": 1632218931080,
+        "mute": false,
+        "invitorAccid": "",
+        "followAccountIds": [],
+        "muteTeam": false,
+        "muteNotiType": "0",
+        "id": "3921756992-cjhz11"
+    },
+    {
+        "teamId": "3814670906",
+        "account": "cjhz11",
+        "type": "owner",
+        "nickInTeam": "",
+        "active": true,
+        "valid": true,
+        "joinTime": 1611303475690,
+        "updateTime": 1611303475690,
+        "mute": false,
+        "invitorAccid": "",
+        "followAccountIds": [],
+        "muteTeam": false,
+        "muteNotiType": "0",
+        "id": "3814670906-cjhz11"
+    },
+    {
+        "teamId": "2933316073",
+        "account": "cjhz11",
+        "type": "normal",
+        "nickInTeam": "",
+        "active": true,
+        "valid": true,
+        "joinTime": 1607946718135,
+        "updateTime": 1607946720261,
+        "mute": false,
+        "invitorAccid": "wangsitu1",
+        "followAccountIds": [],
+        "muteTeam": false,
+        "muteNotiType": "0",
+        "id": "2933316073-cjhz11"
+    },
+    {
+        "teamId": "2927766564",
+        "account": "cjhz11",
+        "type": "owner",
+        "nickInTeam": "",
+        "active": true,
+        "valid": true,
+        "joinTime": 1606877837780,
+        "updateTime": 1606877837780,
+        "mute": false,
+        "invitorAccid": "",
+        "followAccountIds": [],
+        "muteTeam": false,
+        "muteNotiType": "0",
+        "id": "2927766564-cjhz11"
+    }
+]
+ INFO  "[NIM INFO 10-10 15:26:41:033 IM]  ReporterHook::setMonitorForSync: sync item 80126 callback done"
+ INFO  "[NIM INFO 10-10 15:26:41:035 IM]  sync::notifyDataAsync: on users"
+ INFO  [
+    "cs6",
+    "cs5",
+    "wangsitu1",
+    "xumengxiang",
+    "cs4",
+    "cs3",
+    "cs1"
+]
+ INFO  "[NIM INFO 10-10 15:26:41:036 IM]  ReporterHook::setMonitorForSync: sync item 12006 callback done"
+ INFO  "[NIM INFO 10-10 15:26:41:036 IM]  trigger cb: onusers"
+ INFO  "[NIM INFO 10-10 15:26:41:042 IM]  sync::notifyDataAsync: on teams"
+ INFO  [
+    "3921756992",
+    "21611841468",
+    "8423901006",
+    "3814670906",
+    "2927766564",
+    "8422540332",
+    "5534844409",
+    "2933316073"
+]
+ INFO  "[NIM INFO 10-10 15:26:41:043 IM]  trigger cb: onteams"
+ WARN  [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: Stores@1.teamlist
+ WARN  [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: Stores@1.teamlist
+ INFO  "[NIM INFO 10-10 15:26:41:083 IM]  ReporterHook::setMonitorForSync: sync item 80109 callback done"
+ INFO  "[NIM INFO 10-10 15:26:41:084 IM]  sync::notifyDataAsync: on pushNotificationMultiportConfig"
+ INFO  {
+    "shouldPushNotificationWhenPCOnline": true
+}
+ INFO  "[NIM INFO 10-10 15:26:41:085 IM]  trigger cb: onsyncdone"
+ LOG  "[NIM LOG 10-10 15:26:41:091 IM]  sync::onsyncdone: syncing = false"
+ INFO  "[NIM INFO 10-10 15:26:41:091 IM]  ReporterHook::setMonitorForSync: sync complete"
+ LOG  "[NIM DEBUG 10-10 15:26:41:149 IM]  protocol::recvCmd: {\"ser\":7,\"sid\":3,\"cid\":1,\"code\":200,\"r\":[],\"key\":0}"
+
