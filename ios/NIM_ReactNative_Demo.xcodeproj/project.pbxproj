@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5EC71A462CB7AD0800A04902 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		00E356EE1AD99517003FC87E /* NIM_ReactNative_DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NIM_ReactNative_DemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,6 +54,9 @@
 		5709B34CF0A7D63546082F79 /* Pods-NIM_ReactNative_Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIM_ReactNative_Demo.release.xcconfig"; path = "Target Support Files/Pods-NIM_ReactNative_Demo/Pods-NIM_ReactNative_Demo.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-NIM_ReactNative_Demo-NIM_ReactNative_DemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIM_ReactNative_Demo-NIM_ReactNative_DemoTests.debug.xcconfig"; path = "Target Support Files/Pods-NIM_ReactNative_Demo-NIM_ReactNative_DemoTests/Pods-NIM_ReactNative_Demo-NIM_ReactNative_DemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-NIM_ReactNative_Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NIM_ReactNative_Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EC71A3D2CB7AD0800A04902 /* LocationPushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPushService.swift; sourceTree = "<group>"; };
+		5EC71A3F2CB7AD0800A04902 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5EC71A472CB7AE4F00A04902 /* NIM_ReactNative_Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = NIM_ReactNative_Demo.entitlements; path = NIM_ReactNative_Demo/NIM_ReactNative_Demo.entitlements; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = NIM_ReactNative_Demo/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-NIM_ReactNative_Demo-NIM_ReactNative_DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIM_ReactNative_Demo-NIM_ReactNative_DemoTests.release.xcconfig"; path = "Target Support Files/Pods-NIM_ReactNative_Demo-NIM_ReactNative_DemoTests/Pods-NIM_ReactNative_Demo-NIM_ReactNative_DemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -86,6 +102,7 @@
 		13B07FAE1A68108700A75B9A /* NIM_ReactNative_Demo */ = {
 			isa = PBXGroup;
 			children = (
+				5EC71A472CB7AE4F00A04902 /* NIM_ReactNative_Demo.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -106,6 +123,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5EC71A3C2CB7AD0800A04902 /* 22 */ = {
+			isa = PBXGroup;
+			children = (
+				5EC71A3D2CB7AD0800A04902 /* LocationPushService.swift */,
+				5EC71A3F2CB7AD0800A04902 /* Info.plist */,
+			);
+			path = 22;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +145,7 @@
 				13B07FAE1A68108700A75B9A /* NIM_ReactNative_Demo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* NIM_ReactNative_DemoTests */,
+				5EC71A3C2CB7AD0800A04902 /* 22 */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -184,6 +211,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
 				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				5EC71A462CB7AD0800A04902 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -200,6 +228,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -212,7 +241,7 @@
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "NIM_ReactNative_Demo" */;
-			compatibilityVersion = "Xcode 12.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -483,12 +512,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-NIM_ReactNative_Demo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = NIM_ReactNative_Demo/NIM_ReactNative_Demo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KP3R4DA2SG;
+				DEVELOPMENT_TEAM = 7C9A6NRV5L;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = NIM_ReactNative_Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -500,7 +531,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.NI09997;
+				PRODUCT_BUNDLE_IDENTIFIER = com.netease.nim.uni.push;
 				PRODUCT_NAME = NIM_ReactNative_Demo;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -513,12 +544,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-NIM_ReactNative_Demo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = NIM_ReactNative_Demo/NIM_ReactNative_Demo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KP3R4DA2SG;
+				DEVELOPMENT_TEAM = 7C9A6NRV5L;
 				INFOPLIST_FILE = NIM_ReactNative_Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -529,7 +562,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.NI09997;
+				PRODUCT_BUNDLE_IDENTIFIER = com.netease.nim.uni.push;
 				PRODUCT_NAME = NIM_ReactNative_Demo;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

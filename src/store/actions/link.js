@@ -169,6 +169,13 @@ class Actions {
       },
       onsyncdone() {
         Alert.alert('提示', '账号及离线消息同步完成');
+        // constObj.nim.updatePushToken({
+        //   token: "0EV4a03730d6a6647625054640670687f534304730462",
+        //   tokenName: "DEMO_MZ_PUSH",
+        //   done(err) {
+        //     console.log('~~~~~~~~~~~done!', err)
+        //   }
+        // })
         // constObj.nim.getLocalSessions({
         //   done(err, msgs) {
         //     console.log('!!!!!!!!!', err, msgs.sessions.map(item => ({

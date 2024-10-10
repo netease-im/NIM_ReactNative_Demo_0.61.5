@@ -233,3 +233,23 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 }
 ```
 
+
+
+## 切换 java 版本
+
+```
+% /usr/libexec/java_home -V
+Matching Java Virtual Machines (2):
+    17.0.12 (x86_64) "Oracle Corporation" - "Java SE 17.0.12" /Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
+    1.8.0_302 (x86_64) "Amazon" - "Amazon Corretto 8" /Users/chenziyun/Library/Java/JavaVirtualMachines/corretto-1.8.0_302/Contents/Home
+/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
+```
+
+修改 JAVA_HOME 环境变量
+
+```
+% vim ~/.zshrc 
+export JAVA_HOME="/Users/chenziyun/Library/Java/JavaVirtualMachines/corretto-1.8.0_302/Contents/Home"
+
+% source ~/.zshrc
+```
